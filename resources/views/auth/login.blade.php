@@ -79,7 +79,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>{{ config('app.name') }} - Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -96,17 +96,17 @@
                     </div>
 
                     <div class="user_infos">
-                        <form action="#" method="">
+                        <form action="{{ route('login') }}" method="POST">
+                            @csrf
                             <div class="input-group">
-                                <input type="email" name="email"  placeholder="Email" >
+                                <input type="email" name="email"  placeholder="Email" class="@error('email') is-invalid @enderror" value="{{ old('email') }}" >
                             </div>
 
                             <div class="input-group">
-                                <input type="password" name="password"  placeholder="Password" >
+                                <input type="password" name="password"  placeholder="Password" class="@error('password') is-invalid @enderror" >
                             </div>
 
-                            
-                             
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
