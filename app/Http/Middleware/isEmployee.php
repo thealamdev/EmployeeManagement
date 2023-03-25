@@ -17,7 +17,7 @@ class isEmployee
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            if (Auth::user()->role === "user") {
+            if (Auth::user()->role == "user") {
                 return redirect(route('dashboard.multi-auth.index'));
             }
             else{
