@@ -323,55 +323,16 @@
                                     <a class="sidebar-menu-button" data-toggle="collapse" href="#usermanagement">
                                         <i
                                             class="sidebar-menu-icon sidebar-menu-icon--left material-icons">slideshow</i>
-                                        <span class="sidebar-menu-text">User Management</span>
+                                        <span class="sidebar-menu-text">Employee Details</span>
                                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                     </a>
                                     <ul class="sidebar-submenu collapse" id="usermanagement">
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.user-manage.index') }}">
-                                                <span class="sidebar-menu-text">Employee Create</span>
+                                                href="#">
+                                                <span class="sidebar-menu-text">Employee Attandance</span>
                                             </a>
                                         </li>
-
-                                        <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.user-manage.index') }}">
-                                                <span class="sidebar-menu-text">Employee Create</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" data-toggle="collapse" href="#employeeManagement">
-                                        <i
-                                            class="sidebar-menu-icon sidebar-menu-icon--left material-icons">slideshow</i>
-                                        <span class="sidebar-menu-text">Employee Management</span>
-                                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                    </a>
-                                    <ul class="sidebar-submenu collapse" id="employeeManagement">
-                                        <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.shift.index') }}">
-                                                <span class="sidebar-menu-text">Employee Shift List</span>
-                                            </a>
-                                        </li>
-                                        <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.shift.create') }}">
-                                                <span class="sidebar-menu-text">Employee Shift Create</span>
-                                            </a>
-                                        </li>
-
-                                        <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.department.create') }}">
-                                                <span class="sidebar-menu-text">Employee Department Create</span>
-                                            </a>
-                                        </li>
-
-                                         
                                     </ul>
                                 </li>
                                

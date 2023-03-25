@@ -3,16 +3,19 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shift;
 use Illuminate\Http\Request;
 
-class UserDashboardController extends Controller
+class ShiftController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('backend.user-back.index');
+        $shifts = Shift::get();
+        // return $shifts;
+        return view('backend.shift.index',compact('shifts'));
     }
 
     /**
@@ -20,7 +23,7 @@ class UserDashboardController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.shift.create');
     }
 
     /**
@@ -28,7 +31,14 @@ class UserDashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shift = Shift::create([
+            'shift_name' => $request->shift_name,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'description' => $request->description,
+        ]);
+
+        return back()->with('success','Shift inserted successfully');
     }
 
     /**

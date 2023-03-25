@@ -24,7 +24,7 @@
 
 
 @extends('layouts.backapp')
-@section('title','Home')
+@section('title','Admin Dashboard')
 @section('content')
-    dkfd
+   Admin Dashboard
 @endsection
