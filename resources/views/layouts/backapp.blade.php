@@ -329,8 +329,8 @@
                                     <ul class="sidebar-submenu collapse" id="usermanagement">
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="#">
-                                                <span class="sidebar-menu-text">Role</span>
+                                                href="{{ route('dashboard.user-manage.index') }}">
+                                                <span class="sidebar-menu-text">Employee Create</span>
                                             </a>
                                         </li>
                                     </ul>

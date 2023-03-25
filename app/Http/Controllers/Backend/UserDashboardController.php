@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserManageController extends Controller
+class UserDashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('backend.user-manage.index');
+        return view('layouts.app');
     }
 
     /**
@@ -28,7 +28,7 @@ class UserManageController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        //
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserDashboard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+ 
+// Route:: get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth','multiauth'])->name('home');
+ 
+Route::middleware(['auth'])->group(function(){
+     Route::prefix('dashboard')->name('dashboard.')->group(function(){
+          Route:: get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth','multiauth'])->name('home');
+           
+           
+          Route::prefix('user-manage')->name('user-manage.')->group(function(){
+               require __DIR__ .'/user-manage/user-manage.php';
+          });
+
+
+          Route::prefix('multi-auth')->name('multi-auth.')->group(function(){
+               require __DIR__ .'/multi-auth/multi-auth.php';
+          });
+          
+
+
+          
+         
+     });
+});
