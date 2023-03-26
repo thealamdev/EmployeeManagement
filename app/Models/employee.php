@@ -17,4 +17,8 @@ class employee extends Model
         'hire_date' => 'datetime',
         'leave_date' => 'datetime',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

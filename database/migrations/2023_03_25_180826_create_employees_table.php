@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('job_title');
             $table->longText('job_description');
             $table->string('gender');
+            $table->string('nid');
             $table->string('bloop_group')->nullable();
             $table->string('photo')->nullable();
             $table->date('hire_date');

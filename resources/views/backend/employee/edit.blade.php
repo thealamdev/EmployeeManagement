@@ -1,5 +1,5 @@
 @extends('layouts.backapp')
-@section('title', 'User Create')
+@section('title', 'Employee Edit')
 @section('content')
     <style>
         body {
@@ -88,7 +88,8 @@
                 </div>
             </div>
         </div>
-        <form action="{{ route('dashboard.employee-manage.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('dashboard.employee-manage.update',[$employee_details->user->id,$employee_details->id]) }}" method="POST" enctype="multipart/form-data">
+            @method('PUT')
             @csrf
 
             <div class="row setup-content" id="step-1">
@@ -97,27 +98,18 @@
                         <h3> Step 1</h3>
                         <div class="form-group">
                             <label class="control-label">First Name</label>
-                            <input maxlength="100" type="text" name="fname" required="required" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->user->fname }}" name="fname" required="required" class="form-control"
                                 placeholder="Enter First Name" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Last Name</label>
-                            <input maxlength="100" type="text" name="lname" required="required" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->user->lname }}" name="lname" required="required" class="form-control"
                                 placeholder="Enter Last Name" />
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">Employee Email</label>
-                            <input maxlength="100" type="email" name="email" required="required" class="form-control"
-                                placeholder="Enter employee email" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Employee Password</label>
-                            <input maxlength="100" type="password" name="password" required="required" class="form-control"
-                                placeholder="Enter employee password" />
-                        </div>
+                        
                         <div class="form-group">
                             <label class="control-label">Employee Role</label>
-                            <input maxlength="100" type="text" name="role" required="required" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->user->role }}" name="role" required="required" class="form-control"
                                 placeholder="Enter Employee Role" />
                         </div>
                         <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
@@ -132,31 +124,34 @@
                             <label class="control-label">Enter Employee Image</label>
                             <input type="file" name="photo" class="form-control"
                                 placeholder="Enter Employee image" />
+                            <img src="{{ asset('storage/employee/'.$employee_details->photo) }}" alt="" width="50">
                         </div>
                         <div class="form-group">
                             <label class="control-label">Enter Employee Department</label>
                             <select name="department_id" id="department" class="form-control">
                                 <option selected disabled>Select Department</option>
                                 @foreach ($departments as $department)
-                                <option value="{{ $department->id }}">{{ $department->dep_name }}</option>
+                                <option value="{{ $department->id }}" @if ($department->id == $employee_details->department_id)
+                                    {{ "selected" }}
+                                @endif>{{ $department->dep_name }}</option>
                                 @endforeach
                                  
                             </select>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Enter Employee Date of Birth</label>
-                            <input maxlength="200" type="date" name="dob" required="required" class="form-control"
-                                placeholder="Enter employee's dob" />
+                            <input maxlength="200" value="{{ $employee_details->dob->format('Y-m-d') }}" type="date" name="dob" required="required" class="form-control"
+                                 />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Enter Employee Job title</label>
-                            <input maxlength="200" type="text" name="job_title" required="required"
+                            <input maxlength="200" value="{{ $employee_details->job_title }}" type="text" name="job_title" required="required"
                                 class="form-control" placeholder="Enter job title" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Enter job description</label>
                             <textarea name="job_description" id="" cols="30" rows="4" class="form-control"
-                                placeholder="Enter job description"></textarea>
+                                placeholder="Enter job description">{{ $employee_details->job_description }}</textarea>
                         </div>
 
                         <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
@@ -170,21 +165,27 @@
                         <div class="form-group">
                             <label class="control-label">Enter Employee Gender</label>
                             <div class="form-check">
-                                <input class="form-check-input" value="Male" type="radio" name="gender" id="gender">
+                                <input class="form-check-input" value="Male" type="radio" name="gender" id="gender" @if ($employee_details->gender == 'Male')
+                                    {{ "checked" }}
+                                @endif>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Male
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" value="Female" type="radio" name="gender" id="gender"
-                                    >
+                                @if ($employee_details->gender == 'Female')
+                                {{ "checked" }}
+                            @endif>
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Female
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" value="Others" type="radio" name="gender" id="gender"
-                                    >
+                                @if ($employee_details->gender == 'Others')
+                                {{ "checked" }}
+                            @endif >
                                 <label class="form-check-label" for="gender">
                                     Others
                                 </label>
@@ -192,22 +193,24 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Enter Employee NID</label>
-                            <input maxlength="100" type="text" name="nid" required="required"
+                            <input maxlength="100" type="text" name="nid" value="{{ $employee_details->nid }}"
                                 class="form-control" placeholder="Enter Employee NID Number" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Enter Employee Blood Group</label>
-                            <input maxlength="100" type="text" name="blood_group" required="required"
+                            <input maxlength="100" type="text" value="{{ $employee_details->bloop_group }}" name="blood_group" required="required"
                                 class="form-control" placeholder="Enter Employee Blood Group" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Enter Employee Joining Date</label>
-                            <input maxlength="100" type="date" name="hire_date" required="required"
+                            <input maxlength="100" type="date" value="{{ $employee_details->hire_date->format('Y-m-d') }}" name="hire_date" required="required"
                                 class="form-control" placeholder="Enter Joining Date" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Enter Leaving Day(Not required)</label>
-                            <input maxlength="100" type="date" name="leave_date"
+                            <input maxlength="100" type="date" @if ($employee_details->leave_date)
+                            value="{{ $employee_details->leave_date->format('Y-m-d') }}"
+                            @endif name="leave_date"
                                 class="form-control" placeholder="Enter Leaving Date" />
                         </div>
                         <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
@@ -220,9 +223,9 @@
                     <div class="col-md-12">
                         <h3> Step 3</h3>
                         <div class="form-group">
-                            <label class="control-label">Enter job description</label>
+                            <label class="control-label">Enter job Notes</label>
                             <textarea name="notes" cols="30" rows="4" class="form-control"
-                                placeholder="Enter job Notes"></textarea>
+                                placeholder="Enter job Notes">{{ $employee_details->note }}</textarea>
                         </div>
                         <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
                     </div>

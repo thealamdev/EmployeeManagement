@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Shift;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+use function PHPUnit\Framework\isEmpty;
 
 class ShiftController extends Controller
 {
@@ -21,9 +24,12 @@ class ShiftController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id)
     {
-        return view('backend.shift.create');
+        $employee = User::get(['id','fname','lname'])->where('id',$id)->firstOrFail();
+        $shift = Shift::get('user_id')->where('user_id',$id)->first();
+        
+        return view('backend.shift.create',compact('employee','shift'));
     }
 
     /**
@@ -32,10 +38,10 @@ class ShiftController extends Controller
     public function store(Request $request)
     {
         $shift = Shift::create([
+            'user_id' => $request->user_id,
             'shift_name' => $request->shift_name,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
-            'description' => $request->description,
         ]);
 
         return back()->with('success','Shift inserted successfully');

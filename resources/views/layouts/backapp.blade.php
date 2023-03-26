@@ -357,12 +357,7 @@
                                                 <span class="sidebar-menu-text">Employee Shift List</span>
                                             </a>
                                         </li>
-                                        <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.shift.create') }}">
-                                                <span class="sidebar-menu-text">Employee Shift Create</span>
-                                            </a>
-                                        </li>
+                                         
 
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
@@ -373,14 +368,14 @@
 
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.user-manage.create') }}">
+                                                href="{{ route('dashboard.employee-manage.create') }}">
                                                 <span class="sidebar-menu-text">Employee Create</span>
                                             </a>
                                         </li>
 
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.user-manage.index') }}">
+                                                href="{{ route('dashboard.employee-manage.index') }}">
                                                 <span class="sidebar-menu-text">Employee List</span>
                                             </a>
                                         </li>

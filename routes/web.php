@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Backend\DepartmentController;
-use App\Http\Controllers\Backend\ShiftController;
-use App\Http\Controllers\Backend\UserManageController;
-use App\Http\Controllers\UserDashboard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserDashboard;
+use App\Http\Controllers\Backend\ShiftController;
+use App\Http\Controllers\Backend\DepartmentController;
+use App\Http\Controllers\Backend\EmployeeManageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,23 +36,22 @@ Route::middleware(['auth', 'multiauth', 'isEmployee'])->group(function () {
                     Route::get('/', 'index')->name('index');
                     Route::get('create', 'create')->name('create');
                     Route::post('store', 'store')->name('store');
-                    // Route::get('/','index')->name('index');
                });
           });
 
-          Route::controller(UserManageController::class)->group(function () {
-               Route::prefix('user-manage')->name('user-manage.')->group(function () {
+          Route::controller(EmployeeManageController::class)->group(function () {
+               Route::prefix('employee-manage')->name('employee-manage.')->group(function () {
                     Route::get('/', 'index')->name('index');
                     Route::get('create', 'create')->name('create');
                     Route::post('store', 'store')->name('store');
+                    Route::get('edit/{id}/{user_id}', 'edit')->name('edit');
+                    Route::get('show/{id}', 'show')->name('show');
+                    Route::put('update/{id}/{user_id}', 'update')->name('update');
+                     
                });
           });
 
-          // Route::prefix('user-manage')->name('user-manage.')->group(function(){
-          //      require __DIR__ .'/user-manage/user-manage.php';
-          // });
-
-
+          
           Route::controller(UserDashboardController::class)->group(function () {
                Route::prefix('multi-auth')->name('multi-auth.')->group(function () {
                     Route::get('/','index')->name('index');
@@ -61,20 +60,14 @@ Route::middleware(['auth', 'multiauth', 'isEmployee'])->group(function () {
                });
           });
 
-          // Route::prefix('multi-auth')->name('multi-auth.')->group(function () {
-          //      require __DIR__ . '/multi-auth/multi-auth.php';
-          // });
-
-
+           
           Route::controller(ShiftController::class)->group(function () {
                Route::prefix('shift')->name('shift.')->group(function () {
                     Route::get('/','index')->name('index');
-                    Route::get('create','create')->name('create');
+                    Route::get('create/{id}','create')->name('create');
                     Route::post('store','store')->name('store');
                });
           });
-          // Route::prefix('shift')->name('shift.')->group(function () {
-          //      require __DIR__ . '/shift/shift.php';
-          // });
+          
      });
 });

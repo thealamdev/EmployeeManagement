@@ -15,20 +15,25 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Job Title</th>
+                                <th>Role</th>
                                 <th>Blood Group</th>
                                 <th>Actions</th>
                             </thead>
-                            {{-- {{ print_r($ememployee_details) }} --}}
+                             
                             <tbody>
                                 @foreach ($employee_details as $employee_detail)
                                 <tr>
-                                    <td>{{ $employee_detail->id }}</td>
-                                    <td>{{ $employee_detail->fname . $employee_detail->lname }}</td>
-                                    <td>{{ $employee_detail->employee->job_title }}</td>
-                                    <td>{{ $employee_detail->employee->bloop_group }}</td>
+                                    <td>{{ $employee_detail->user->id }}</td>
+                                    <td>{{ $employee_detail->user->fname ." ". $employee_detail->user->lname }}</td>
+                                    <td>{{ $employee_detail->job_title }}</td>
+                                    <td>{{ $employee_detail->user->role }}</td>
+                                    <td>{{ $employee_detail->bloop_group }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-primary">Edit</a>
+                                        <a href="{{ route('dashboard.shift.create',$employee_detail->user->id) }}" class="btn btn-secondary">Add Shift</a>
+                                        <a href="{{ route('dashboard.employee-manage.edit', [$employee_detail->user->id, $employee_detail->id]) }}" class="btn btn-primary">Edit</a>
                                         <a href="#" class="btn btn-danger">Delete</a>
+                                        <a href="{{ route('dashboard.employee-manage.show',$employee_detail->user->id) }}" class="btn btn-success">View</a>
+                                        
                                     </td>
                                 </tr>
                                 @endforeach
