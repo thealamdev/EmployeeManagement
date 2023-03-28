@@ -27,7 +27,7 @@ Auth::routes();
 
 // Route:: get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth','multiauth'])->name('home');
 
-Route::middleware(['auth', 'multiauth'])->group(function () {
+Route::middleware(['auth','MultiAuth'])->group(function () {
      Route::prefix('dashboard')->name('dashboard.')->group(function () {
           Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

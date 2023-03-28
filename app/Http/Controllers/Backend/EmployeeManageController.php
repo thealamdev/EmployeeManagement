@@ -10,7 +10,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-
+use App\Models\EmployeeContact;
+use App\Models\EmployeeEmerContact;
 use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\isEmpty;
 
@@ -43,7 +44,7 @@ class EmployeeManageController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $fname = $request->fname;
         $image_name = '';
         $user_image = $request->file('photo');
@@ -74,6 +75,29 @@ class EmployeeManageController extends Controller
             'leave_date' => $request->leave_date,
             'dob' => $request->dob,
             'note' => $request->notes
+        ]);
+        
+        $employee_id = $employee->id;
+        $employee_contact = EmployeeContact::create([
+            'employee_id' => $employee_id,
+            'phone1' => $request->phone1,
+            'phone2' => $request->phone2,
+            'email2' => $request->email2,
+            'address' => $request->address,
+            'city' => $request->city,
+            'zip' => $request->zip,
+        ]);
+
+         
+        $employee_emr_contact = EmployeeEmerContact::create([
+            'employee_id' => $employee_id,
+            'fullname' => $request->fullname,
+            'relationship' =>$request->relationship,
+            'phone' => $request->rel_phone,
+            'email' => $request-> rel_email,
+            'address' => $request-> rel_address,
+            'city' => $request-> rel_city,
+            'zip' =>$request->rel_zip,
         ]);
 
         return redirect(route('dashboard.employee-manage.index'))->with('success','Employee Insert Successfull');
