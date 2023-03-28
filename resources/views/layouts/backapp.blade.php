@@ -15,7 +15,7 @@
     <link type="text/css" href="{{ asset('backend/css/vendor-flatpickr.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('backend/css/vendor-flatpickr-airbnb.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link type="text/css" href="{{ asset('backend/css/toastr.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('backend/css/toastr.min.css') }}">
     @yield('css')
 </head>
 
@@ -476,6 +476,9 @@
     <script src="{{ asset('backend/vendor/jqvmap/maps/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('backend/js/vector-maps.js') }}"></script>
     <script src="{{ asset('backend/js/toastr.min.js') }}"></script>
+    <script>
+        $('.toast').toast('show')
+    </script>
     @yield('js')
 
 </body>

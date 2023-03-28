@@ -2,7 +2,7 @@
 @section('title', 'Department Create')
 @section('content')
     <div class="container">
-
+        @include('message')
         <div class="card">
             <div class="card-header">
                 <a href="#" class="btn btn-primary">Create</a>
