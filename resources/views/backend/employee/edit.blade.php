@@ -92,7 +92,7 @@
                 </div>
             </div>
         </div>
-        <form action="{{ route('dashboard.employee-manage.update',[$employee_details->user->id,$employee_details->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('dashboard.employee-manage.update', $employee_details->id) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
 
@@ -242,32 +242,32 @@
                         <h3> Step 5</h3>
                         <div class="form-group">
                             <label class="control-label">Employee phone Number 1</label>
-                            <input maxlength="100" type="text" name="phone1" required="required" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->employee_contact->phone1 }}" name="phone1" required="required" class="form-control"
                                 placeholder="Enter phone 1" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Employee phone Number 2</label>
-                            <input maxlength="100" type="text" name="phone2" required="required" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->employee_contact->phone2 }}" name="phone2" required="required" class="form-control"
                                 placeholder="Enter phone 2" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Employee Email 2</label>
-                            <input maxlength="100" type="email" name="email2" required="required" class="form-control"
+                            <input maxlength="100" type="email" value="{{ $employee_details->employee_contact->email2 }}" name="email2" required="required" class="form-control"
                                 placeholder="Enter employee email 2" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Employee Address</label>
-                            <input maxlength="100" type="text" name="address" required="required" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->employee_contact->address }}" name="address" required="required" class="form-control"
                                 placeholder="Enter employee address" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Employee City</label>
-                            <input maxlength="100" type="text" name="city" required="required" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->employee_contact->city }}" name="city" required="required" class="form-control"
                                 placeholder="Enter Employee city" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Employee Zip</label>
-                            <input maxlength="100" type="text" name="zip" required="required" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->employee_contact->zip }}" name="zip" required="required" class="form-control"
                                 placeholder="Enter Employee zip" />
                         </div>
                          
@@ -278,39 +278,39 @@
                         <h3>Emergency Contact</h3>
                         <div class="form-group">
                             <label class="control-label">Relative's Full Name</label>
-                            <input maxlength="100" type="text" name="fullname" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->employee_emr_contact->fullname }}" name="fullname" class="form-control"
                                 placeholder="Enter Full Name" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Relationship</label>
-                            <input maxlength="100" type="text" name="relationship" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->employee_emr_contact->relationship }}" name="relationship" class="form-control"
                                 placeholder="Enter Relationship" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Employee Relative Email</label>
-                            <input maxlength="100" type="email" name="rel_email"  class="form-control"
+                            <input maxlength="100" type="email" value="{{ $employee_details->employee_emr_contact->email }}" name="rel_email"  class="form-control"
                                 placeholder="Enter relative's email" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Employee Relative's Phone</label>
-                            <input maxlength="100" type="text" name="rel_phone" required="required" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->employee_emr_contact->phone }}" name="rel_phone" required="required" class="form-control"
                                 placeholder="Enter Relative's Phone " />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Employee Address</label>
-                            <input maxlength="100" type="text" name="rel_address" required="required" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->employee_emr_contact->address }}" name="rel_address" required="required" class="form-control"
                                 placeholder="Enter Employee Role" />
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Employee Relative's City</label>
-                            <input maxlength="100" type="text" name="rel_city" required="required" class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->employee_emr_contact->city }}" name="rel_city" required="required" class="form-control"
                                 placeholder="Enter Employee Role" />
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Employee Relative's Zip</label>
-                            <input maxlength="100" type="text" name="rel_zip"  class="form-control"
+                            <input maxlength="100" type="text" value="{{ $employee_details->employee_emr_contact->zip }}" name="rel_zip"  class="form-control"
                                 placeholder="Enter Employee's Relative Zip" />
                         </div>
                         <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>

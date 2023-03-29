@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Shift;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\employee;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -26,8 +27,13 @@ class ShiftController extends Controller
      */
     public function create($id)
     {
-        $employee = User::get(['id','fname','lname'])->where('id',$id)->firstOrFail();
-        $shift = Shift::get('user_id')->where('user_id',$id)->first();
+         
+        $employee = employee::with(['user'=>function($q){
+            $q->select(['id','fname','lname']);
+        }])->where('id',$id)->firstOrFail();
+        // return $employee;
+        $shift = Shift::get('id')->where('id',$id)->first();
+        // return $shift;
         
         return view('backend.shift.create',compact('employee','shift'));
     }
@@ -38,7 +44,7 @@ class ShiftController extends Controller
     public function store(Request $request)
     {
         $shift = Shift::create([
-            'user_id' => $request->user_id,
+            'employee_id' => $request->employee_id,
             'shift_name' => $request->shift_name,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,

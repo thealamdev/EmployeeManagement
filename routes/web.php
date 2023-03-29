@@ -44,9 +44,9 @@ Route::middleware(['auth','MultiAuth'])->group(function () {
                     Route::get('/', 'index')->name('index');
                     Route::get('create', 'create')->name('create');
                     Route::post('store', 'store')->name('store');
-                    Route::get('edit/{id}/{user_id}', 'edit')->name('edit');
+                    Route::get('edit/{emp_id}', 'edit')->name('edit');
                     Route::get('show/{id}', 'show')->name('show');
-                    Route::put('update/{id}/{user_id}', 'update')->name('update');
+                    Route::put('update/{emp_id}', 'update')->name('update');
                      
                });
           });

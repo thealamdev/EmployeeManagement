@@ -22,9 +22,7 @@ class EmployeeManageController extends Controller
      */
     public function index()
     {
-        $employee_details = employee::with(['user'=>function($q){
-            $q->whereNotIn('id',[1]);
-        }])->get();
+        $employee_details = employee::with('user')->get();
         // return $employee_details;
         return view('backend.employee.index',compact('employee_details'));
     }
@@ -116,7 +114,8 @@ class EmployeeManageController extends Controller
      */
     public function edit(string $id)
     {
-        $employee_details = employee:: with('user')->where('user_id',$id)->get()->firstOrFail();
+        $employee_details = employee:: with('user')->with('employee_contact')->with('employee_emr_contact')->where('id',$id)->get()->firstOrFail();
+        
         $departments = Department::get(['id','dep_name','description']);
         return view('backend.employee.edit',compact('employee_details','departments'));
     }
@@ -124,7 +123,7 @@ class EmployeeManageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id,$emp_id)
+    public function update(Request $request, string $emp_id)
     {
         $employee_all = employee::where('id',$emp_id)->with('user')->with('employee_contact')->with('employee_emr_contact')->first();
        
