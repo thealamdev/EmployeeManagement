@@ -116,7 +116,7 @@ class EmployeeManageController extends Controller
      */
     public function edit(string $id)
     {
-        $employee_details = employee::with('user')->where('user_id',$id)->get()->firstOrFail();
+        $employee_details = employee:: with('user')->where('user_id',$id)->get()->firstOrFail();
         $departments = Department::get(['id','dep_name','description']);
         return view('backend.employee.edit',compact('employee_details','departments'));
     }
@@ -126,7 +126,8 @@ class EmployeeManageController extends Controller
      */
     public function update(Request $request, string $id,$emp_id)
     {
-        // return $user_id;
+        $employee_all = employee::where('id',$emp_id)->with('user')->with('employee_contact')->with('employee_emr_contact')->first();
+       
         $fname = $request->fname;
         $employee_img =  employee::where('id',$emp_id)->get('photo')->first();
         $image_name = $employee_img->photo;
@@ -136,8 +137,8 @@ class EmployeeManageController extends Controller
             $upload_image = $user_image->move(public_path('/storage/employee/'),$image_name);
         }
          
-        
-        $user = User::find($id);
+        $user_m_id = $employee_all->user->id;
+        $user = User::find($user_m_id);
          
         $user->update([
             'fname' => $request->fname,
@@ -145,8 +146,9 @@ class EmployeeManageController extends Controller
             'role' => $request->role
         ]);
 
-        $employee = employee::find($emp_id);
-        // return $employee;
+        $employe_m_id = $employee_all->id;
+        $employee = employee::find($employe_m_id);
+        
         $employee->update([
             'department_id' => $request->department_id,
             'job_title' => $request->job_title,
@@ -160,8 +162,37 @@ class EmployeeManageController extends Controller
             'dob' => $request->dob,
             'note' => $request->notes
         ]);
+        
 
-        return back();
+        $employee_contact_id = $employee_all->employee_contact->id;
+        $employee_contact = EmployeeContact::find($employee_contact_id);
+
+        $employee_contact->update([
+            'employee_id' => $employee->id,
+            'phone1' => $request->phone1,
+            'phone2' => $request->phone2,
+            'email2' => $request->email2,
+            'address' => $request->address,
+            'city' => $request->city,
+            'zip' => $request->zip,
+        ]);
+
+        $employee_emr_contact_id = $employee_all->employee_emr_contact->id;
+        $employee_emr_contact = EmployeeEmerContact::find($employee_emr_contact_id);
+
+        $employee_emr_contact->update([
+            'employee_id' => $employee->id,
+            'fullname' => $request->fullname,
+            'relationship' => $request->relationship,
+            'phone' => $request->rel_phone,
+            'email' => $request->rel_email,
+            'address' => $request->rel_address,
+            'city' => $request->rel_city,
+            'zip' => $request->rel_zip,
+        ]);
+         
+
+        return redirect(route('dashboard.employee-manage.index'))->with('success','Employee Update successful');
     }
 
     /**

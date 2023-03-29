@@ -18,12 +18,12 @@ class MultiAuth
     {
         if (Auth::check()) {
             if (Auth::user()->role == "super-admin") {
-            //  return $next($request);
-                return redirect(route('dashboard.multi-auth.index'));
+             return $next($request);
+                // return redirect(route('dashboard.multi-auth.index'));
             }
             else{
-                // return redirect(route('dashboard.home'));
-                return $next($request);
+                return redirect(route('dashboard.multi-auth.index'));
+                // return $next($request);
             }
         }
          
