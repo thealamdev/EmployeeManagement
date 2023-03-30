@@ -71,6 +71,7 @@ Route::middleware(['auth'])->group(function () {
           });
 
 
+           // employee routes:
           Route::controller(EmployeeAttandanceController::class)->group(function () {
                Route::prefix('employee-attandance')->name('employee-attandance.')->group(function () {
                     Route::get('/','index')->name('index');
@@ -78,6 +79,9 @@ Route::middleware(['auth'])->group(function () {
                     Route::post('store','store')->name('store');
                });
           });
+
+          
+
           
      });
 });

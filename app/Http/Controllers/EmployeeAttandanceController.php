@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\employee;
+use App\Models\EmployeeAttendance;
+use App\Models\Shift;
 use Illuminate\Http\Request;
 
 class EmployeeAttandanceController extends Controller
@@ -11,7 +14,11 @@ class EmployeeAttandanceController extends Controller
      */
     public function index()
     {
-        //
+        $emp_id = auth()->user()->employee->id;
+        $employee = employee::where('id',$emp_id)->with(['user','employee_contact'])->firstOrFail();
+        $shift = Shift::where('employee_id',$emp_id)->first();
+        // return $shift;
+        return view('backend.employee-attandance.index',compact('employee','shift'));
     }
 
     /**
@@ -27,7 +34,13 @@ class EmployeeAttandanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $emp_id = auth()->user()->employee->id;
+        return $emp_id;
+
+        $employee_attandance = EmployeeAttendance::create([
+            'employee_id' => $emp_id,
+            'present' => "Present",
+        ]);
     }
 
     /**

@@ -320,16 +320,16 @@
                                 </li>
                                
                                 <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" data-toggle="collapse" href="#usermanagement">
+                                    <a class="sidebar-menu-button" data-toggle="collapse" href="#employee-attandance">
                                         <i
                                             class="sidebar-menu-icon sidebar-menu-icon--left material-icons">slideshow</i>
                                         <span class="sidebar-menu-text">Employee Details</span>
                                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                     </a>
-                                    <ul class="sidebar-submenu collapse" id="usermanagement">
+                                    <ul class="sidebar-submenu collapse" id="employee-attandance">
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="#">
+                                                href="{{ route('dashboard.employee-attandance.index') }}">
                                                 <span class="sidebar-menu-text">Employee Attandance</span>
                                             </a>
                                         </li>
