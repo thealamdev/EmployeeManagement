@@ -43,6 +43,7 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+    'ip_address' => file_get_contents('https://api.ipify.org'),
     /*
     |--------------------------------------------------------------------------
     | Application URL

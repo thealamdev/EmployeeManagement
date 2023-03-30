@@ -112,8 +112,10 @@
                                     <p class="mb-0">Office Time</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    {{ date('h:i') }}
-                                    <p class="text-muted mb-0">{{ $shift->start_time->format('h:i') . " -- ". $shift->end_time->format('h:i') }}</p>
+                                    {{ 'Now:' . '' . date('h:i A') }}
+                                    <p class="text-muted mb-0">
+                                        {{ $shift->start_time->format('h:i A') . ' -- ' . $shift->end_time->format('h:i A') }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -188,15 +190,44 @@
           </div> --}}
                     <div class="row">
                         <div class="col-lg-12">
-                            
-                            @if ($shift->start_time->format('h:i') < date('h:i') && $shift->end_time->format('h:i') > date('h:i'))
+                            @if (config('app.ip_address') == '103.129.214.75' || '103.129.214.74' || '103.129.214.73')
+                                @if ($shift->start_time->format('H:i') < date('H:i') && $shift->end_time->format('H:i') > date('H:i'))
+                                    @if (empty($emp_att))
+                                        <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-primary" type="submit">Give Attendance</button>
+                                        </form>
+                                    @elseif($emp_att && empty($emp_att->created_at->format('y-m-d')) == date('y-m-d'))
+                                        <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-primary" type="submit">Give Attendance</button>
+                                        </form>
+                                    @endif
+                                @endif
+                            @endif
+
+
+                            {{-- @if ($shift->start_time->format('H:i') < date('H:i') && $shift->end_time->format('H:i') > date('H:i'))
+                            @if ($emp_att->isEmpty())
                                 <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
                                     @csrf
                                     <button class="btn btn-primary" type="submit">Give Attendance</button>
                                 </form>
+                            @else
+                                @php $attendance_given = false @endphp
+                                @foreach ($emp_att as $att)
+                                    @if ($att->created_at->format('y-m-d') == date('y-m-d'))
+                                        @php $attendance_given = true @endphp
+                                    @endif
+                                @endforeach
+                                @if (!$attendance_given)
+                                    <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
+                                        @csrf
+                                        <button class="btn btn-primary" type="submit">Give Attendance</button>
+                                    </form>
+                                @endif
                             @endif
-
-
+                        @endif --}}
 
                         </div>
                     </div>

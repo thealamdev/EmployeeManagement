@@ -14,11 +14,14 @@ class EmployeeAttandanceController extends Controller
      */
     public function index()
     {
+        
         $emp_id = auth()->user()->employee->id;
         $employee = employee::where('id',$emp_id)->with(['user','employee_contact'])->firstOrFail();
         $shift = Shift::where('employee_id',$emp_id)->first();
-        // return $shift;
-        return view('backend.employee-attandance.index',compact('employee','shift'));
+        $emp_att = EmployeeAttendance::where('employee_id',$emp_id)->first();
+
+        
+        return view('backend.employee-attandance.index',compact(['employee','shift','emp_att']));
     }
 
     /**
@@ -35,12 +38,12 @@ class EmployeeAttandanceController extends Controller
     public function store(Request $request)
     {
         $emp_id = auth()->user()->employee->id;
-        return $emp_id;
-
         $employee_attandance = EmployeeAttendance::create([
             'employee_id' => $emp_id,
             'present' => "Present",
         ]);
+
+        return back()->with('success','Attandance Done');
     }
 
     /**
