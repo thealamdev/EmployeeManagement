@@ -1,4 +1,4 @@
-
+{{-- 
  @if (Session::has('success'))
      <script>
          Command: toastr["success"]("{!! Session::get('success') !!}", "success")
@@ -21,4 +21,19 @@
              "hideMethod": "fadeOut"
          }
      </script>
+ @endif --}}
+
+<style>
+    .meeage{
+        z-index: 99999;
+        color:red;
+        position: absolute;
+        top:100px;
+        right: 20px;
+    }
+</style>
+ @if (Session::has('success'))
+     <div class="meeage">
+        <p> {{ Session::get('success') }}</p>
+     </div>
  @endif

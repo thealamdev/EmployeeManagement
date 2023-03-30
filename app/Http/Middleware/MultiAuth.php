@@ -17,15 +17,14 @@ class MultiAuth
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            if (Auth::user()->role == "super-admin") {
-             return $next($request);
-                // return redirect(route('dashboard.multi-auth.index'));
-            }
-            else{
+            if (Auth::user()->role == 'super-admin') {
+                return redirect(route('dashboard.home'));
+            }else{
                 return redirect(route('dashboard.multi-auth.index'));
-                // return $next($request);
             }
         }
+    
+        return $next($request);
          
     }
 }

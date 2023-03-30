@@ -15527,6 +15527,7 @@ body {
 
 .sidebar-light {
   color: rgba(0, 0, 0, 0.54);
+  /* color:red !important; */
 }
 
 [dir] .sidebar-light {

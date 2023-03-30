@@ -135,16 +135,16 @@ class EmployeeManageController extends Controller
             $image_name = Str::slug($fname).uniqid().".".$user_image->getClientOriginalExtension();
             $upload_image = $user_image->move(public_path('/storage/employee/'),$image_name);
         }
-         
+        
         $user_m_id = $employee_all->user->id;
         $user = User::find($user_m_id);
-         
+        
         $user->update([
             'fname' => $request->fname,
             'lname' => $request->lname,
             'role' => $request->role
         ]);
-
+        
         $employe_m_id = $employee_all->id;
         $employee = employee::find($employe_m_id);
         

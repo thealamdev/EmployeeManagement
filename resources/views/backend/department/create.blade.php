@@ -2,7 +2,7 @@
 @section('title', 'Department Create')
 @section('content')
     <div class="container">
-        @include('message')
+        
         <div class="card">
             <div class="card-header">
                 <a href="#" class="btn btn-primary">Create</a>
@@ -24,12 +24,12 @@
                                  <textarea class="form-control" name="description" id="description" cols="30" rows="5"></textarea>
                             </div>
                              
-
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
 @endsection

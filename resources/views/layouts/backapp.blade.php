@@ -282,8 +282,7 @@
                                 <div id="recent_orders_date" data-toggle="flatpickr" data-flatpickr-wrap="true"
                                     data-flatpickr-mode="range" data-flatpickr-alt-format="d/m/Y"
                                     data-flatpickr-date-format="d/m/Y">
-                                    <a href="javascript:void(0)" class="link-date" data-toggle>13/03/2018 to
-                                        20/03/2018</a>
+                                    <a href="javascript:void(0)" class="link-date" data-toggle> </a>
                                     <input class="flatpickr-hidden-input" type="hidden"
                                         value="13/03/2018 to 20/03/2018" data-input>
                                 </div>
@@ -301,7 +300,7 @@
 
                 <div class="mdk-drawer  js-mdk-drawer" id="default-drawer" data-align="start">
                     <div class="mdk-drawer__content">
-                        <div class="sidebar sidebar-light sidebar-left sidebar-p-t" data-perfect-scrollbar>
+                        <div class="sidebar sidebar-dark sidebar-left sidebar-p-t" data-perfect-scrollbar>
                             <div class="sidebar-heading">Menu</div>
                             <ul class="sidebar-menu">
                                 <li class="sidebar-menu-item active open">
@@ -319,29 +318,7 @@
                                     </ul>
                                 </li>
                                
-                                {{-- <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" data-toggle="collapse" href="#usermanagement">
-                                        <i
-                                            class="sidebar-menu-icon sidebar-menu-icon--left material-icons">slideshow</i>
-                                        <span class="sidebar-menu-text">Employee Management</span>
-                                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                    </a>
-                                    <ul class="sidebar-submenu collapse" id="usermanagement">
-                                        <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.user-manage.index') }}">
-                                                <span class="sidebar-menu-text">Employee Create</span>
-                                            </a>
-                                        </li>
-
-                                        <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.user-manage.index') }}">
-                                                <span class="sidebar-menu-text">Employee Create</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li> --}}
+                                 
 
                                 <li class="sidebar-menu-item">
                                     <a class="sidebar-menu-button" data-toggle="collapse" href="#employeeManagement">
@@ -385,6 +362,29 @@
                                     </ul>
                                 </li>
                                
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button" data-toggle="collapse" href="#employeeAttandance">
+                                        <i
+                                            class="sidebar-menu-icon sidebar-menu-icon--left material-icons">slideshow</i>
+                                        <span class="sidebar-menu-text">Employee Attandance</span>
+                                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                    </a>
+                                    <ul class="sidebar-submenu collapse" id="employeeAttandance">
+                                        <li class="sidebar-menu-item">
+                                            <a class="sidebar-menu-button"
+                                                href="{{ route('dashboard.employee-attandance.create') }}">
+                                                <span class="sidebar-menu-text">Attandance</span>
+                                            </a>
+                                        </li>
+
+                                        {{-- <li class="sidebar-menu-item">
+                                            <a class="sidebar-menu-button"
+                                                href=" ">
+                                                <span class="sidebar-menu-text">Employee Create</span>
+                                            </a>
+                                        </li> --}}
+                                    </ul>
+                                </li>
                                  
                                
 
@@ -433,7 +433,7 @@
 
     <!-- jQuery -->
     <script src="{{ asset('backend/vendor/jquery.min.js') }}"></script>
-    {{-- @include('message') --}}
+    @include('message')
     <!-- Bootstrap -->
     <script src="{{ asset('backend/vendor/popper.min.js') }}"></script>
     <script src="{{ asset('backend/vendor/bootstrap.min.js') }}"></script>

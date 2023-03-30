@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserDashboard;
 use App\Http\Controllers\Backend\ShiftController;
 use App\Http\Controllers\Backend\DepartmentController;
+use App\Http\Controllers\EmployeeAttandanceController;
+use App\Http\Controllers\Backend\UserDashboardController;
 use App\Http\Controllers\Backend\EmployeeManageController;
 
 /*
@@ -27,7 +28,7 @@ Auth::routes();
 
 // Route:: get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth','multiauth'])->name('home');
 
-Route::middleware(['auth','MultiAuth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
      Route::prefix('dashboard')->name('dashboard.')->group(function () {
           Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -65,6 +66,15 @@ Route::middleware(['auth','MultiAuth'])->group(function () {
                Route::prefix('shift')->name('shift.')->group(function () {
                     Route::get('/','index')->name('index');
                     Route::get('create/{id}','create')->name('create');
+                    Route::post('store','store')->name('store');
+               });
+          });
+
+
+          Route::controller(EmployeeAttandanceController::class)->group(function () {
+               Route::prefix('employee-attandance')->name('employee-attandance.')->group(function () {
+                    Route::get('/','index')->name('index');
+                    Route::get('create','create')->name('create');
                     Route::post('store','store')->name('store');
                });
           });
