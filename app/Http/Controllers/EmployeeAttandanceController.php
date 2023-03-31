@@ -14,13 +14,13 @@ class EmployeeAttandanceController extends Controller
      */
     public function index()
     {
-        
+        // $att =[];
         $emp_id = auth()->user()->employee->id;
         $employee = employee::where('id',$emp_id)->with(['user','employee_contact'])->firstOrFail();
         $shift = Shift::where('employee_id',$emp_id)->first();
-        $emp_att = EmployeeAttendance::where('employee_id',$emp_id)->first();
-
+        $emp_att = EmployeeAttendance::where('employee_id',$emp_id)->orderBy('id','desc')->first();
         
+        // return $emp_att;
         return view('backend.employee-attandance.index',compact(['employee','shift','emp_att']));
     }
 
@@ -51,7 +51,7 @@ class EmployeeAttandanceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -76,5 +76,12 @@ class EmployeeAttandanceController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function progress(){
+        $emp_id = auth()->user()->employee->id;
+        $employee_details = EmployeeAttendance::where('employee_id',$emp_id)->with(['employee'])->get();
+        // return $employee_details;
+        return view('backend.employee-attandance.progress',compact('employee_details'));
     }
 }

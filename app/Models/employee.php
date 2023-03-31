@@ -31,4 +31,8 @@ class employee extends Model
     public function employee_emr_contact(){
         return $this->hasOne(EmployeeEmerContact::class);
     }
+
+    public function shift(){
+        return $this->hasOne(Shift::class);
+    }
 }

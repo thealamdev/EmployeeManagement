@@ -282,8 +282,7 @@
                                 <div id="recent_orders_date" data-toggle="flatpickr" data-flatpickr-wrap="true"
                                     data-flatpickr-mode="range" data-flatpickr-alt-format="d/m/Y"
                                     data-flatpickr-date-format="d/m/Y">
-                                    <a href="javascript:void(0)" class="link-date" data-toggle>13/03/2018 to
-                                        20/03/2018</a>
+                                    <a href="javascript:void(0)" class="link-date" data-toggle>{{"Today Time:". date('h:i A') }}</a>
                                     <input class="flatpickr-hidden-input" type="hidden"
                                         value="13/03/2018 to 20/03/2018" data-input>
                                 </div>
@@ -331,6 +330,13 @@
                                             <a class="sidebar-menu-button"
                                                 href="{{ route('dashboard.employee-attandance.index') }}">
                                                 <span class="sidebar-menu-text">Employee Attandance</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="sidebar-menu-item">
+                                            <a class="sidebar-menu-button"
+                                                href="{{ route('dashboard.employee-attandance.progress') }}">
+                                                <span class="sidebar-menu-text">Attandance Progress</span>
                                             </a>
                                         </li>
                                     </ul>
