@@ -372,7 +372,7 @@
                                     <ul class="sidebar-submenu collapse" id="employeeAttandance">
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.employee-attandance.create') }}">
+                                                href="{{ route('dashboard.attandance-control.index') }}">
                                                 <span class="sidebar-menu-text">Attandance</span>
                                             </a>
                                         </li>

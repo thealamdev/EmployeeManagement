@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AttandanceBySuperAdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\ShiftController;
@@ -48,7 +49,6 @@ Route::middleware(['auth'])->group(function () {
                     Route::get('edit/{emp_id}', 'edit')->name('edit');
                     Route::get('show/{id}', 'show')->name('show');
                     Route::put('update/{emp_id}', 'update')->name('update');
-                     
                });
           });
 
@@ -66,6 +66,15 @@ Route::middleware(['auth'])->group(function () {
                Route::prefix('shift')->name('shift.')->group(function () {
                     Route::get('/','index')->name('index');
                     Route::get('create/{id}','create')->name('create');
+                    Route::post('store','store')->name('store');
+               });
+          });
+
+
+          Route::controller(AttandanceBySuperAdminController::class)->group(function () {
+               Route::prefix('attandance-control')->name('attandance-control.')->group(function () {
+                    Route::get('/','index')->name('index');
+                    Route::get('create','create')->name('create');
                     Route::post('store','store')->name('store');
                });
           });
