@@ -1,39 +1,23 @@
-{{-- 
- @if (Session::has('success'))
-     <script>
-         Command: toastr["success"]("{!! Session::get('success') !!}", "success")
+@if (Session::has('success'))
+    <script>
+        Command: toastr["success"]("{!! Session::get('success') !!}", "success")
 
-         toastr.options = {
-             "closeButton": true,
-             "debug": false,
-             "newestOnTop": false,
-             "progressBar": true,
-             "positionClass": "toast-top-right",
-             "preventDuplicates": false,
-             "onclick": null,
-             "showDuration": "300",
-             "hideDuration": "1000",
-             "timeOut": "5000",
-             "extendedTimeOut": "1000",
-             "showEasing": "swing",
-             "hideEasing": "linear",
-             "showMethod": "fadeIn",
-             "hideMethod": "fadeOut"
-         }
-     </script>
- @endif --}}
-
-<style>
-    .meeage{
-        z-index: 99999;
-        color:red;
-        position: absolute;
-        top:100px;
-        right: 20px;
-    }
-</style>
- @if (Session::has('success'))
-     <div class="meeage">
-        <p> {{ Session::get('success') }}</p>
-     </div>
- @endif
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+@endif

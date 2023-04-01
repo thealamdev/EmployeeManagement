@@ -433,7 +433,7 @@
 
     <!-- jQuery -->
     <script src="{{ asset('backend/vendor/jquery.min.js') }}"></script>
-    @include('message')
+    
     <!-- Bootstrap -->
     <script src="{{ asset('backend/vendor/popper.min.js') }}"></script>
     <script src="{{ asset('backend/vendor/bootstrap.min.js') }}"></script>
@@ -476,9 +476,7 @@
     <script src="{{ asset('backend/vendor/jqvmap/maps/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('backend/js/vector-maps.js') }}"></script>
     <script src="{{ asset('backend/js/toastr.min.js') }}"></script>
-    <script>
-        $('.toast').toast('show')
-    </script>
+    @include('message')
     @yield('js')
 
 </body>
