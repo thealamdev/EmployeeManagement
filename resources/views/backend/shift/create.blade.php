@@ -46,7 +46,9 @@
                             </div>
                             
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" @if (!empty($shift->employee_id))
+                                {{ "disabled" }}
+                               @endif class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>

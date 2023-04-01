@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Models\employee;
-use App\Models\EmployeeAttendance;
-use App\Models\Shift;
 use Carbon\Carbon;
+use App\Models\Shift;
+use App\Models\employee;
 use Illuminate\Http\Request;
+use App\Models\EmployeeAttendance;
+use App\Http\Controllers\Controller;
 
 class EmployeeAttandanceController extends Controller
 {
@@ -38,7 +39,7 @@ class EmployeeAttandanceController extends Controller
             'ip_address' => config('app.ip_address'),
         ]);
 
-        return back()->with('success', 'Attandance Done');
+        return back()->with('success', 'Attandance Granted !!!');
     }
 
 

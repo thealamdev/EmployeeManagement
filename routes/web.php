@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\Backend\AttandanceBySuperAdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\ShiftController;
 use App\Http\Controllers\Backend\DepartmentController;
-use App\Http\Controllers\EmployeeAttandanceController;
+use App\Http\Controllers\Backend\EmployeeAttandanceController;
 use App\Http\Controllers\Backend\UserDashboardController;
 use App\Http\Controllers\Backend\EmployeeManageController;
+use App\Http\Controllers\Backend\AttandanceBySuperAdminController;
 
 /*
 |--------------------------------------------------------------------------

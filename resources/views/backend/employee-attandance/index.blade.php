@@ -26,8 +26,12 @@
                             <p class="text-muted mb-1">{{ $employee->job_title }}</p>
                             <p class="text-muted mb-4">{{ config('app.name') }}</p>
                             <div class="d-flex justify-content-center mb-2">
-                                <button type="button" class="btn btn-primary">Follow</button>
-                                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                              @if (!empty($emp_att))
+                              <button type="button" class="btn btn-success">Presented</button>
+                              @else
+                              <button type="button" class="btn btn-danger">Absent</button>
+                              @endif
+                                
                             </div>
                         </div>
                     </div>
@@ -60,9 +64,7 @@
                 </div>
 
                 <div class="col-lg-8">
-                    @if (!empty($emp_att))
-                        {{ 'You have done your present' }}
-                    @endif
+                    
                     <div class="card mb-4">
 
                         <div class="card-body">
