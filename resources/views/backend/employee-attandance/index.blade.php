@@ -58,8 +58,13 @@
             </div>
           </div> --}}
                 </div>
+
                 <div class="col-lg-8">
+                    @if (!empty($emp_att))
+                        {{ 'You have done your present' }}
+                    @endif
                     <div class="card mb-4">
+
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -191,17 +196,12 @@
 
 
                     <div class="row">
-                         
+
                         <div class="col-lg-12">
                             @if (config('app.ip_address') == '103.129.214.75' || '103.129.214.74' || '103.129.214.73' || '103.129.214.72')
-                                @if ($shift->start_time->format('H:i') < date('H:i') && $shift->end_time->format('H:i') > date('H:i'))
-
+                                @if (strtotime($shift->start_time->format('Y-m-d H:i:s')) < strtotime(date('Y-m-d H:i:s')) &&
+                                        strtotime($shift->end_time->format('Y-m-d H:i:s')) > strtotime(date('Y-m-d H:i:s')))
                                     @if (empty($emp_att))
-                                        <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
-                                            @csrf
-                                            <button class="btn btn-primary" type="submit">Give Attendance</button>
-                                        </form>
-                                    @elseif($emp_att && empty($emp_att->created_at->format('y-m-d')) == date('y-m-d'))
                                         <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
                                             @csrf
                                             <button class="btn btn-primary" type="submit">Give Attendance</button>

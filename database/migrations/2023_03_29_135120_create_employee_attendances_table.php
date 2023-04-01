@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('employee_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('present');
+            $table->string('ip_address');
             $table->softDeletes();
             $table->timestamps();
         });

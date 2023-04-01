@@ -34,13 +34,13 @@
                             </div>
                             <div class="mb-3">
                                 <label for="start_time" class="form-label">Shift Start Time</label>
-                                <input type="time" name="start_time" @if (!empty($shift->id))
+                                <input type="datetime-local" name="start_time" @if (!empty($shift->id))
                                 {{ "disabled" }}
                                @endif  class="form-control" id="start_time">
                             </div>
                             <div class="mb-3">
                                 <label for="end_time" class="form-label">Shift End Time</label>
-                                <input type="time" name="end_time" @if (!empty($shift->id))
+                                <input type="datetime-local" name="end_time" @if (!empty($shift->id))
                                 {{ "disabled" }}
                                @endif  class="form-control" id="end_time">
                             </div>

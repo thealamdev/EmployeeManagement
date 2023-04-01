@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\employee;
 use App\Models\EmployeeAttendance;
 use App\Models\Shift;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EmployeeAttandanceController extends Controller
@@ -14,13 +15,13 @@ class EmployeeAttandanceController extends Controller
      */
     public function index()
     {
-        // $att =[];
         $emp_id = auth()->user()->employee->id;
         $employee = employee::where('id',$emp_id)->with(['user','employee_contact'])->firstOrFail();
-        $shift = Shift::where('employee_id',$emp_id)->first();
-        $emp_att = EmployeeAttendance::where('employee_id',$emp_id)->orderBy('id','desc')->first();
+        $shift = Shift::where('employee_id',$emp_id)->firstOrFail();
+        $emp_att = EmployeeAttendance::where('employee_id',$emp_id)->whereDate('created_at', '=', Carbon::today()->toDateString())->first();
         
-        // return $emp_att;
+        
+        // return Carbon::today()->toDateString();
         return view('backend.employee-attandance.index',compact(['employee','shift','emp_att']));
     }
 
@@ -41,6 +42,7 @@ class EmployeeAttandanceController extends Controller
         $employee_attandance = EmployeeAttendance::create([
             'employee_id' => $emp_id,
             'present' => "Present",
+            'ip_address' => config('app.ip_address'),
         ]);
 
         return back()->with('success','Attandance Done');

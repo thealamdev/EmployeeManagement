@@ -24,7 +24,7 @@ class EmployeeManageController extends Controller
     {
         $employee_details = employee::with('user')->get();
         // return $employee_details;
-        return view('backend.employee.index',compact('employee_details'));
+        return view('backend.employee.index', compact('employee_details'));
     }
 
     /**
@@ -32,9 +32,9 @@ class EmployeeManageController extends Controller
      */
     public function create()
     {
-        $departments = Department::get(['id','dep_name','description']);
+        $departments = Department::get(['id', 'dep_name', 'description']);
         // return $departments;
-        return view('backend.employee.create',compact('departments'));
+        return view('backend.employee.create', compact('departments'));
     }
 
     /**
@@ -46,8 +46,8 @@ class EmployeeManageController extends Controller
         $fname = $request->fname;
         $image_name = '';
         $user_image = $request->file('photo');
-        $image_name = Str::slug($fname).uniqid().".".$user_image->getClientOriginalExtension();
-        
+        $image_name = Str::slug($fname) . uniqid() . "." . $user_image->getClientOriginalExtension();
+
         $user = User::create([
             'fname' => $request->fname,
             'lname' => $request->lname,
@@ -58,8 +58,8 @@ class EmployeeManageController extends Controller
 
         $id =  $user->id;
 
-        $upload_image = $user_image->move(public_path('/storage/employee/'),$image_name);
-        
+        $upload_image = $user_image->move(public_path('/storage/employee/'), $image_name);
+
         $employee = employee::create([
             'user_id' => $id,
             'department_id' => $request->department_id,
@@ -74,7 +74,7 @@ class EmployeeManageController extends Controller
             'dob' => $request->dob,
             'note' => $request->notes
         ]);
-        
+
         $employee_id = $employee->id;
         $employee_contact = EmployeeContact::create([
             'employee_id' => $employee_id,
@@ -86,19 +86,19 @@ class EmployeeManageController extends Controller
             'zip' => $request->zip,
         ]);
 
-         
+
         $employee_emr_contact = EmployeeEmerContact::create([
             'employee_id' => $employee_id,
             'fullname' => $request->fullname,
-            'relationship' =>$request->relationship,
+            'relationship' => $request->relationship,
             'phone' => $request->rel_phone,
-            'email' => $request-> rel_email,
-            'address' => $request-> rel_address,
-            'city' => $request-> rel_city,
-            'zip' =>$request->rel_zip,
+            'email' => $request->rel_email,
+            'address' => $request->rel_address,
+            'city' => $request->rel_city,
+            'zip' => $request->rel_zip,
         ]);
 
-        return redirect(route('dashboard.employee-manage.index'))->with('success','Employee Insert Successfull');
+        return redirect(route('dashboard.employee-manage.index'))->with('success', 'Employee Insert Successfull');
     }
 
     /**
@@ -106,7 +106,7 @@ class EmployeeManageController extends Controller
      */
     public function show(string $id)
     {
-         return view('backend.employee.show');
+        return view('backend.employee.show');
     }
 
     /**
@@ -114,10 +114,10 @@ class EmployeeManageController extends Controller
      */
     public function edit(string $id)
     {
-        $employee_details = employee:: with('user')->with('employee_contact')->with('employee_emr_contact')->where('id',$id)->get()->firstOrFail();
-        
-        $departments = Department::get(['id','dep_name','description']);
-        return view('backend.employee.edit',compact('employee_details','departments'));
+        $employee_details = employee::with('user')->with('employee_contact')->with('employee_emr_contact')->where('id', $id)->get()->firstOrFail();
+
+        $departments = Department::get(['id', 'dep_name', 'description']);
+        return view('backend.employee.edit', compact('employee_details', 'departments'));
     }
 
     /**
@@ -125,29 +125,29 @@ class EmployeeManageController extends Controller
      */
     public function update(Request $request, string $emp_id)
     {
-        $employee_all = employee::where('id',$emp_id)->with('user')->with('employee_contact')->with('employee_emr_contact')->first();
-       
+        $employee_all = employee::where('id', $emp_id)->with('user')->with('employee_contact')->with('employee_emr_contact')->first();
+
         $fname = $request->fname;
-        $employee_img =  employee::where('id',$emp_id)->get('photo')->first();
+        $employee_img =  employee::where('id', $emp_id)->get('photo')->first();
         $image_name = $employee_img->photo;
         $user_image = $request->file('photo');
-        if(!empty($user_image)){
-            $image_name = Str::slug($fname).uniqid().".".$user_image->getClientOriginalExtension();
-            $upload_image = $user_image->move(public_path('/storage/employee/'),$image_name);
+        if (!empty($user_image)) {
+            $image_name = Str::slug($fname) . uniqid() . "." . $user_image->getClientOriginalExtension();
+            $upload_image = $user_image->move(public_path('/storage/employee/'), $image_name);
         }
-        
+
         $user_m_id = $employee_all->user->id;
         $user = User::find($user_m_id);
-        
+
         $user->update([
             'fname' => $request->fname,
             'lname' => $request->lname,
             'role' => $request->role
         ]);
-        
+
         $employe_m_id = $employee_all->id;
         $employee = employee::find($employe_m_id);
-        
+
         $employee->update([
             'department_id' => $request->department_id,
             'job_title' => $request->job_title,
@@ -161,7 +161,7 @@ class EmployeeManageController extends Controller
             'dob' => $request->dob,
             'note' => $request->notes
         ]);
-        
+
 
         $employee_contact_id = $employee_all->employee_contact->id;
         $employee_contact = EmployeeContact::find($employee_contact_id);
@@ -189,9 +189,8 @@ class EmployeeManageController extends Controller
             'city' => $request->rel_city,
             'zip' => $request->rel_zip,
         ]);
-         
 
-        return redirect(route('dashboard.employee-manage.index'))->with('success','Employee Update successful');
+        return redirect(route('dashboard.employee-manage.index'))->with('success', 'Employee Update successful');
     }
 
     /**
@@ -201,7 +200,4 @@ class EmployeeManageController extends Controller
     {
         //
     }
-
-
-   
 }
