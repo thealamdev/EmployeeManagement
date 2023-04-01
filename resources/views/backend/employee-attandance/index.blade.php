@@ -195,46 +195,17 @@
           </div> --}}
 
 
-                    <div class="row">
-
+                <div class="row">
                         <div class="col-lg-12">
-                            @if (config('app.ip_address') == '103.129.214.75' || '103.129.214.74' || '103.129.214.73' || '103.129.214.72')
-                                @if (strtotime($shift->start_time->format('Y-m-d H:i:s')) < strtotime(date('Y-m-d H:i:s')) &&
-                                        strtotime($shift->end_time->format('Y-m-d H:i:s')) > strtotime(date('Y-m-d H:i:s')))
-                                    @if (empty($emp_att))
-                                        <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
-                                            @csrf
-                                            <button class="btn btn-primary" type="submit">Give Attendance</button>
-                                        </form>
-                                    @endif
-
-                                @endif
-                            @else
-                                {{ 'IP address is not matched' }}
-                            @endif
-
-                            {{-- @if ($shift->start_time->format('H:i') < date('H:i') && $shift->end_time->format('H:i') > date('H:i'))
-                                @if ($emp_att->isEmpty())
+                            @if (strtotime($shift->start_time->format('Y-m-d H:i:s')) < strtotime(date('Y-m-d H:i:s')) &&
+                                    strtotime($shift->end_time->format('Y-m-d H:i:s')) > strtotime(date('Y-m-d H:i:s')))
+                                @if (empty($emp_att))
                                     <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
                                         @csrf
                                         <button class="btn btn-primary" type="submit">Give Attendance</button>
                                     </form>
-                                @else
-                                    @php $attendance_given = false @endphp
-                                    @foreach ($emp_att as $att)
-                                        @if ($att->created_at->format('y-m-d') == date('y-m-d'))
-                                            @php $attendance_given = true @endphp
-                                        @endif
-                                    @endforeach
-                                    @if (!$attendance_given)
-                                        <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
-                                            @csrf
-                                            <button class="btn btn-primary" type="submit">Give Attendance</button>
-                                        </form>
-                                    @endif
                                 @endif
-                            @endif --}}
-
+                            @endif
                         </div>
                     </div>
                 </div>
