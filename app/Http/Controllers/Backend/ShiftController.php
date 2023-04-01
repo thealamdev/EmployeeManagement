@@ -18,7 +18,6 @@ class ShiftController extends Controller
     public function index()
     {
         $shifts = Shift::get();
-        // return $shifts;
         return view('backend.shift.index',compact('shifts'));
     }
 
@@ -32,7 +31,7 @@ class ShiftController extends Controller
             $q->select(['id','fname','lname']);
         }])->where('id',$id)->firstOrFail();
         // return $employee;
-        $shift = Shift::get('id')->where('id',$id)->first();
+        $shift = Shift::where('employee_id',$id)->first('employee_id');
         // return $shift;
         
         return view('backend.shift.create',compact('employee','shift'));
