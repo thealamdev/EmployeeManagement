@@ -29,7 +29,7 @@ Auth::routes();
 
 // Route:: get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth','multiauth'])->name('home');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','isAdmin'])->group(function () {
      Route::prefix('dashboard')->name('dashboard.')->group(function () {
           Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -76,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
                     Route::get('/','index')->name('index');
                     Route::get('create','create')->name('create');
                     Route::post('store','store')->name('store');
+                    Route::post('date-filter','dateFilter')->name('dateFilter');
                });
           });
 

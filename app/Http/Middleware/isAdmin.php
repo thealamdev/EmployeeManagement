@@ -7,24 +7,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class MultiAuth
+class isAdmin
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {
-            if (Auth::user()->role == 'super-admin') {
-                return redirect(route('dashboard.home'));
-            }else{
-                return redirect(route('dashboard.multi-auth.index'));
+        if(Auth::check()==true){
+            if(Auth::user()->role == 'super-admin'){
+                return $next($request);
+            }
+            else{
+              return redirect('/dashboard/multi-auth');
             }
         }
-    
-        return $next($request);
-         
+        
     }
 }

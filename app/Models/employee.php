@@ -35,4 +35,9 @@ class employee extends Model
     public function shift(){
         return $this->hasOne(Shift::class);
     }
+
+    public function employee_attandance(){
+        return $this->hasMany(EmployeeAttendance::class);
+    }
+
 }

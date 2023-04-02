@@ -203,8 +203,7 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            @if ($startTime < $todayDate &&
-                                    ($endTime > $todayDate))
+                            @if ($startTime < $todayDate)
                                 @if (empty($emp_att))
                                     <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
                                         @csrf
