@@ -26,12 +26,12 @@
                             <p class="text-muted mb-1">{{ $employee->job_title }}</p>
                             <p class="text-muted mb-4">{{ config('app.name') }}</p>
                             <div class="d-flex justify-content-center mb-2">
-                              @if (!empty($emp_att))
-                              <button type="button" class="btn btn-success">Presented</button>
-                              @else
-                              <button type="button" class="btn btn-danger">Absent</button>
-                              @endif
-                                
+                                @if (!empty($emp_att))
+                                    <button type="button" class="btn btn-success">Presented</button>
+                                @else
+                                    <button type="button" class="btn btn-danger">Absent</button>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="col-lg-8">
-                    
+
                     <div class="card mb-4">
 
                         <div class="card-body">
@@ -196,11 +196,15 @@
             </div>
           </div> --}}
 
+                    
+                    
+                     
 
-                <div class="row">
+
+                    <div class="row">
                         <div class="col-lg-12">
-                            @if (strtotime($shift->start_time->format('Y-m-d H:i:s')) < strtotime(date('Y-m-d H:i:s')) &&
-                                    strtotime($shift->end_time->format('Y-m-d H:i:s')) > strtotime(date('Y-m-d H:i:s')))
+                            @if ($startTime < $todayDate &&
+                                    ($endTime > $todayDate))
                                 @if (empty($emp_att))
                                     <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
                                         @csrf
