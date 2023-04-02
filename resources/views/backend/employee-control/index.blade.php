@@ -85,11 +85,11 @@
                         if (emp_detils.length > 0) {
                             for (let i = 0; i < emp_detils.length; i++) {
                                 html += '<tr>\
-                                                    <td>' + emp_detils[i]['employee_attandance'][i]['created_at'] + '</td>\
-                                                    <td>' + emp_detils[i]['user']['fname'] +" "+ emp_detils[i]['user']['lname'] + '</td>\
-                                                    <td>' + emp_detils[i]['nid'] + '</td>\
-                                                    <td>' + emp_detils[i]['bloop_group'] + '</td>\
-                                                 </tr>';
+                                                <td>' + emp_detils[i]['job_title']+'</td>\
+                                                <td>' + emp_detils[i]['user']['fname'] +" "+ emp_detils[i]['user']['lname'] + '</td>\
+                                                <td>' + emp_detils[i]['nid'] + '</td>\
+                                                <td>' + emp_detils[i]['bloop_group'] + '</td>\
+                                        </tr>';
                             }
                         } else {
                             "nothing";

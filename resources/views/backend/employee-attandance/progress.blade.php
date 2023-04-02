@@ -20,7 +20,7 @@
                         <td>{{ $employee_detail->employee->user->fname . " ". $employee_detail->employee->user->lname }}</td>
                         <td>{{ $employee_detail->present }}</td>
                         <td>{{ $employee_detail->created_at->format('h:i A') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($employee_detail->created_at)->format('H:i') }} - {{ $employee_detail->employee->shift->start_time->format('H:i') }} ({{ \Carbon\Carbon::parse($employee_detail->created_at)->diffInMinutes($employee_detail->employee->shift->start_time) }} minutes)
+                        <td>{{ \Carbon\Carbon::parse($employee_detail->created_at)->format('h:i') }} - {{ $employee_detail->employee->shift->start_time->format('h:i') }} ({{ \Carbon\Carbon::parse($employee_detail->created_at)->diffInMinutes($employee_detail->employee->shift->start_time)/60 }} hour)
                         </td>
 
                     </tr>
