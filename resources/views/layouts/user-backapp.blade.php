@@ -328,14 +328,14 @@
                                     <ul class="sidebar-submenu collapse" id="employee-attandance">
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.employee-attandance.index') }}">
+                                                href="{{ route('employee.attandance.index') }}">
                                                 <span class="sidebar-menu-text">Employee Attandance</span>
                                             </a>
                                         </li>
 
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.employee-attandance.progress') }}">
+                                                href="{{ route('employee.attandance.progress') }}">
                                                 <span class="sidebar-menu-text">Attandance Progress</span>
                                             </a>
                                         </li>

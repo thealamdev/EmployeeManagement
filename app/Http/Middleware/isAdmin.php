@@ -21,7 +21,7 @@ class isAdmin
                 return $next($request);
             }
             else{
-              return redirect('/dashboard/multi-auth');
+              return redirect()->route('employee.attandance.index');
             }
         }
         

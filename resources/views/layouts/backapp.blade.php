@@ -217,7 +217,7 @@
                                 <a href="#account_menu" class="nav-link dropdown-toggle" data-toggle="dropdown"
                                     data-caret="false">
                                     <span class="mr-1 d-flex-inline">
-                                        <span class="text-light">{{ auth()->user()->name }}</span>
+                                        <span class="text-light">{{ auth()->user()->fname }}</span>
                                     </span>
                                     <img src="{{ asset('backend/images/avatar/demi.png') }}" class="rounded-circle" width="32" alt="Frontted">
                                         
@@ -377,12 +377,12 @@
                                             </a>
                                         </li>
 
-                                        {{-- <li class="sidebar-menu-item">
+                                        <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href=" ">
-                                                <span class="sidebar-menu-text">Employee Create</span>
+                                                href="{{ route('dashboard.attandance-control.attandance') }}">
+                                                <span class="sidebar-menu-text">Attandance List</span>
                                             </a>
-                                        </li> --}}
+                                        </li>
                                     </ul>
                                 </li>
                                  

@@ -90,4 +90,8 @@ class AttandanceBySuperAdminController extends Controller
         // return $employee_attandance;
         return view('backend.employee-control.index', compact('employee_attandance'));
     }
+
+    public function attandance(){
+        return view('backend.employee-attandance.attandance');
+    }
 }
