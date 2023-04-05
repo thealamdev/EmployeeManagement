@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Department;
 use Illuminate\Http\Request;
 
-class DepartmentController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +20,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('backend.department.create');
+        //
     }
 
     /**
@@ -29,12 +28,7 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $department = Department::create([
-            'dep_name' => $request->dep_name,
-            'description' => $request->description,
-        ]);
-
-        return back()->with('success','Department Inserted Successfully');
+        //
     }
 
     /**

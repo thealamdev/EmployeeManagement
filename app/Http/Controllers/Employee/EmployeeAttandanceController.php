@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
-
+namespace App\Http\Controllers\Employee;
 use Carbon\Carbon;
 use App\Models\Shift;
 use App\Models\employee;
@@ -29,12 +28,12 @@ class EmployeeAttandanceController extends Controller
         $todayDate = strtotime($Sdate.' '.$time);
         $startTime = strtotime($shift->start_time);
         $endTime = strtotime($shift->end_time);
-        return view('backend.employee-attandance.index', compact(['employee', 'shift', 'emp_att','todayDate','startTime','endTime']));
+        return view('employee.attandance.index', compact(['employee', 'shift', 'emp_att','todayDate','startTime','endTime']));
     }
 
     public function create()
     {
-        return view('backend.employee-attandance.create');
+        return view('employee.employee-attandance.create');
     }
 
     public function store(Request $request)
@@ -76,6 +75,6 @@ class EmployeeAttandanceController extends Controller
         $emp_id = auth()->user()->employee->id;
         $employee_details = EmployeeAttendance::where('employee_id', $emp_id)->with(['employee'])->get();
         // return $employee_details;
-        return view('backend.employee-attandance.progress', compact('employee_details'));
+        return view('employee.attandance.progress', compact('employee_details'));
     }
 }

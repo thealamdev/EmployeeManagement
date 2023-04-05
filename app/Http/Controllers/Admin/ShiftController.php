@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Shift;
@@ -18,7 +18,7 @@ class ShiftController extends Controller
     public function index()
     {
         $shifts = Shift::get();
-        return view('backend.shift.index',compact('shifts'));
+        return view('admin.shift.index',compact('shifts'));
     }
 
     /**
@@ -34,7 +34,7 @@ class ShiftController extends Controller
         $shift = Shift::where('employee_id',$id)->first('employee_id');
         // return $shift;
         
-        return view('backend.shift.create',compact('employee','shift'));
+        return view('admin.shift.create',compact('employee','shift'));
     }
 
     /**

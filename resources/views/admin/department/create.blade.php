@@ -11,7 +11,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6 m-auto">
-                        <form action="{{ route('dashboard.department.store') }}" method="POST">
+                        <form action="{{ route('admin.department.store') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="shift_name" class="form-label">Department Name</label>

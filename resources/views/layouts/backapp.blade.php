@@ -330,7 +330,7 @@
                                     <ul class="sidebar-submenu collapse" id="employeeManagement">
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.shift.index') }}">
+                                                href="{{ route('admin.shift.index') }}">
                                                 <span class="sidebar-menu-text">Employee Shift List</span>
                                             </a>
                                         </li>
@@ -338,21 +338,21 @@
 
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.department.create') }}">
+                                                href="{{ route('admin.department.create') }}">
                                                 <span class="sidebar-menu-text">Employee Department Create</span>
                                             </a>
                                         </li>
 
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.employee-manage.create') }}">
+                                                href="{{ route('admin.employee-manage.create') }}">
                                                 <span class="sidebar-menu-text">Employee Create</span>
                                             </a>
                                         </li>
 
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.employee-manage.index') }}">
+                                                href="{{ route('admin.employee-manage.index') }}">
                                                 <span class="sidebar-menu-text">Employee List</span>
                                             </a>
                                         </li>
@@ -372,14 +372,14 @@
                                     <ul class="sidebar-submenu collapse" id="employeeAttandance">
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.attandance-control.index') }}">
+                                                href="{{ route('admin.attandance-control.index') }}">
                                                 <span class="sidebar-menu-text">Attandance</span>
                                             </a>
                                         </li>
 
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                                href="{{ route('dashboard.attandance-control.attandance') }}">
+                                                href="{{ route('admin.attandance-control.attandance') }}">
                                                 <span class="sidebar-menu-text">Attandance List</span>
                                             </a>
                                         </li>
@@ -424,9 +424,9 @@
         <app-settings layout-active="default"
             :layout-location="{
                 'default': 'index.html',
-                'fixed': 'fixed-dashboard.html',
-                'fluid': 'fluid-dashboard.html',
-                'mini': 'mini-dashboard.html'
+                'fixed': 'fixed-admin.html',
+                'fluid': 'fluid-admin.html',
+                'mini': 'mini-admin.html'
             }">
         </app-settings>
     </div>
@@ -468,7 +468,7 @@
     <script src="{{ asset('backend/js/chartjs-rounded-bar.js') }}"></script> --}}
 
     <!-- Chart Samples -->
-    {{-- <script src="{{ asset('backend/js/page.dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('backend/js/page.admin.js') }}"></script>
     <script src="{{ asset('backend/js/progress-charts.js') }}"></script> --}}
 
     <!-- Vector Maps -->

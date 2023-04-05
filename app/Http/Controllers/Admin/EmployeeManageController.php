@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Shift;
@@ -24,7 +24,7 @@ class EmployeeManageController extends Controller
     {
         $employee_details = employee::with('user')->get();
         // return $employee_details;
-        return view('backend.employee.index', compact('employee_details'));
+        return view('admin.employee.index', compact('employee_details'));
     }
 
     /**
@@ -34,7 +34,7 @@ class EmployeeManageController extends Controller
     {
         $departments = Department::get(['id', 'dep_name', 'description']);
         // return $departments;
-        return view('backend.employee.create', compact('departments'));
+        return view('admin.employee.create', compact('departments'));
     }
 
     /**
@@ -98,7 +98,7 @@ class EmployeeManageController extends Controller
             'zip' => $request->rel_zip,
         ]);
 
-        return redirect(route('dashboard.employee-manage.index'))->with('success', 'Employee Insert Successfull');
+        return redirect(route('admin.employee-manage.index'))->with('success', 'Employee Insert Successfull');
     }
 
     /**
@@ -106,7 +106,7 @@ class EmployeeManageController extends Controller
      */
     public function show(string $id)
     {
-        return view('backend.employee.show');
+        return view('admin.employee.show');
     }
 
     /**
@@ -117,7 +117,7 @@ class EmployeeManageController extends Controller
         $employee_details = employee::with('user')->with('employee_contact')->with('employee_emr_contact')->where('id', $id)->get()->firstOrFail();
 
         $departments = Department::get(['id', 'dep_name', 'description']);
-        return view('backend.employee.edit', compact('employee_details', 'departments'));
+        return view('admin.employee.edit', compact('employee_details', 'departments'));
     }
 
     /**
@@ -190,7 +190,7 @@ class EmployeeManageController extends Controller
             'zip' => $request->rel_zip,
         ]);
 
-        return redirect(route('dashboard.employee-manage.index'))->with('success', 'Employee Update successful');
+        return redirect(route('admin.employee-manage.index'))->with('success', 'Employee Update successful');
     }
 
     /**

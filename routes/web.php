@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\ShiftController;
-use App\Http\Controllers\Backend\DepartmentController;
-use App\Http\Controllers\Backend\EmployeeAttandanceController;
-use App\Http\Controllers\Backend\UserDashboardController;
-use App\Http\Controllers\Backend\EmployeeManageController;
-use App\Http\Controllers\Backend\AttandanceBySuperAdminController;
+use App\Http\Controllers\Admin\ShiftController;
+use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\EmployeeManageController;
+use App\Http\Controllers\Admin\AttandanceBySuperAdminController;
+use App\Http\Controllers\Employee\EmployeeAttandanceController;
+use App\Http\Controllers\Employee\UserDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +27,11 @@ Route::get('/', function () {
 Auth::routes();
 
 
-// Route:: get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth','multiauth'])->name('home');
 
-Route::middleware(['auth'])->group(function () {
-     Route::prefix('dashboard')->name('dashboard.')->group(function () {
-          Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('isAdmin');
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+     Route::prefix('admin')->name('admin.')->group(function () {
+          Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
           Route::controller(DepartmentController::class)->group(function () {
                Route::prefix('department')->name('department.')->group(function () {
@@ -52,10 +52,6 @@ Route::middleware(['auth'])->group(function () {
                });
           });
 
-
-
-
-
           Route::controller(ShiftController::class)->group(function () {
                Route::prefix('shift')->name('shift.')->group(function () {
                     Route::get('/', 'index')->name('index');
@@ -63,7 +59,6 @@ Route::middleware(['auth'])->group(function () {
                     Route::post('store', 'store')->name('store');
                });
           });
-
 
           Route::controller(AttandanceBySuperAdminController::class)->group(function () {
                Route::prefix('attandance-control')->name('attandance-control.')->group(function () {
@@ -78,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'isEmployee'])->group(function () {
      Route::prefix('employee')->name('employee.')->group(function () {
 
           Route::controller(UserDashboardController::class)->group(function () {

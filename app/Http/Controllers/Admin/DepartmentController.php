@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
-class UserDashboardController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('backend.user-back.index');
+        //
     }
 
     /**
@@ -20,7 +21,7 @@ class UserDashboardController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.department.create');
     }
 
     /**
@@ -28,7 +29,12 @@ class UserDashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $department = Department::create([
+            'dep_name' => $request->dep_name,
+            'description' => $request->description,
+        ]);
+
+        return back()->with('success','Department Inserted Successfully');
     }
 
     /**

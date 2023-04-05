@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">
                 <a href="#" class="btn btn-primary">List</a>
-                <a class="btn btn-primary" href="{{ route('dashboard.employee-manage.index') }}">Back</a>
+                <a class="btn btn-primary" href="{{ route('admin.employee-manage.index') }}">Back</a>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -15,7 +15,7 @@
                         @if (!empty($shift->employee_id))
                          <h3>{{ "Shift already Exist" }}</h3>
                         @endif 
-                        <form action="{{ route('dashboard.shift.store') }}" method="POST">
+                        <form action="{{ route('admin.shift.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="employee_id" value="{{ $employee->id }}">
                             <div class="mb-3">

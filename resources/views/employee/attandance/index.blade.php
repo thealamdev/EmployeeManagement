@@ -205,7 +205,7 @@
                         <div class="col-lg-12">
                             @if ($startTime < $todayDate)
                                 @if (empty($emp_att))
-                                    <form action="{{ route('dashboard.employee-attandance.store') }}" method="POST">
+                                    <form action="{{ route('employee.attandance.store') }}" method="POST">
                                         @csrf
                                         <button class="btn btn-primary" type="submit">Give Attendance</button>
                                     </form>

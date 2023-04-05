@@ -55,7 +55,7 @@
     </style>
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('dashboard.employee-manage.index') }}">Create</a>
+            <a href="{{ route('admin.employee-manage.index') }}">Create</a>
         </div>
     </div>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -92,7 +92,7 @@
                 </div>
             </div>
         </div>
-        <form action="{{ route('dashboard.employee-manage.update', $employee_details->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.employee-manage.update', $employee_details->id) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
 

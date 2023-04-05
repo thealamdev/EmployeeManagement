@@ -92,7 +92,7 @@
                 </div>
             </div>
         </div>
-        <form action="{{ route('dashboard.employee-manage.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.employee-manage.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="row setup-content" id="step-1">

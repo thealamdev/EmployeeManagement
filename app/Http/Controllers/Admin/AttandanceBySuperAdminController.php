@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\employee;
@@ -26,9 +26,9 @@ class AttandanceBySuperAdminController extends Controller
                 ->get();
             return response()->json(['employee_attandance' => $employee_attandance]);
 
-        } elseif (Route::currentRouteName() == 'dashboard.attandance-control.index') {
+        } elseif (Route::currentRouteName() == 'admin.attandance-control.index') {
             $employee_attandance = EmployeeAttendance::with('employee')->get();
-            return view('backend.employee-control.index', compact('employee_attandance'));
+            return view('admin.employee-control.index', compact('employee_attandance'));
         }
     }
 
@@ -48,7 +48,7 @@ class AttandanceBySuperAdminController extends Controller
 
 
         $employee_attandance = EmployeeAttendance::where('employee_id', $request->emp_id)->get();
-        return view('backend.employee-control.index', compact('employee_attandance'));
+        return view('admin.employee-control.index', compact('employee_attandance'));
     }
 
     /**
@@ -88,10 +88,10 @@ class AttandanceBySuperAdminController extends Controller
         $employee_attandance = EmployeeAttendance::with('employee')->whereBetween('created_at', [$request->start_date, $request->end_date])->get();
 
         // return $employee_attandance;
-        return view('backend.employee-control.index', compact('employee_attandance'));
+        return view('admin.employee-control.index', compact('employee_attandance'));
     }
 
     public function attandance(){
-        return view('backend.employee-attandance.attandance');
+        return view('employee.attandance.attandance');
     }
 }

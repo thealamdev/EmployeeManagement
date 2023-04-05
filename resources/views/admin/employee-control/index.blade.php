@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="col-lg-10">
-                    <form action="{{ route('dashboard.attandance-control.dateFilter') }}" method="POST">
+                    <form action="{{ route('admin.attandance-control.dateFilter') }}" method="POST">
                         @csrf
                         <div class="row">
 
@@ -22,7 +22,7 @@
                             <div class="col-lg-4">
                                 <div class="buttons mt-3">
                                     <button type="submit" class="btn btn-info">Search</button>
-                                    <a href="{{ route('dashboard.attandance-control.index') }}"
+                                    <a href="{{ route('admin.attandance-control.index') }}"
                                         class="btn btn-danger">Refresh</a>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: "{{ route('dashboard.attandance-control.index') }}",
+                    url: "{{ route('admin.attandance-control.index') }}",
                     dataType: 'json',
                     data: {
                         emp_id: $emp_id,
