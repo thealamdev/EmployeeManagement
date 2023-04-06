@@ -16,6 +16,8 @@
     <link type="text/css" href="{{ asset('backend/css/vendor-flatpickr-airbnb.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link type="text/css" href="{{ asset('backend/css/toastr.min.css') }}" rel="stylesheet">
+    <!-- Line awesome cdn -->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     @yield('css')
 </head>
 

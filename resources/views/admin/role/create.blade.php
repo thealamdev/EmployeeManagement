@@ -5,8 +5,8 @@
 
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('admin.role.create') }}" class="btn btn-primary">Fresh</a>
-                <a href="{{ route('admin.role.index') }}" class="btn btn-primary">List</a>
+                <a href="{{ route('admin.role.create') }}" class="btn btn-primary"><i class="las la-sync"></i></a>
+                <a href="{{ route('admin.role.index') }}" class="btn btn-primary"><i class="las la-list-ul"></i></a>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -15,7 +15,11 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="shift_name" class="form-label">Role Name</label>
-                                <input type="text" name="role" class="form-control" aria-describedby="emailHelp">
+                                <input type="text" name="role"
+                                    class="form-control @error('role')
+                                    {{ 'alert alert-danger' }}
+                                @enderror"
+                                    aria-describedby="emailHelp">
                                 @error('role')
                                     <div id="error" class="form-text text-danger">{{ $message }}</div>
                                 @enderror
@@ -23,7 +27,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" name="description" cols="30" rows="5"></textarea>
+                                <textarea
+                                    class="form-control @error('description')
+                                {{ 'alert alert-danger' }}
+                                @enderror"
+                                    name="description" cols="30" rows="5"></textarea>
+                                @error('description')
+                                    <div id="error" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-primary">Submit</button>

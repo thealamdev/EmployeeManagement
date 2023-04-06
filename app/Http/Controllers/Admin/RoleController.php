@@ -13,7 +13,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::get();
+        return view('admin.role.index',compact('roles'));
     }
 
     /**
@@ -48,25 +49,18 @@ class RoleController extends Controller
             
             return back()->with('success','Role Insert successfull');
         }
-        else{
+
+        if($validate == false){
             return back()->with('error','Some error found !!!');
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+   
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $role = Role::where('id',$id)->firstOrFail();
+        return view('admin.role.edit',compact('role'));
     }
 
     /**
@@ -74,7 +68,30 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         //validation part:
+         $validate = $request->validate([
+            'role' => 'required|unique:roles',
+            'description' => 'nullable|max:255',
+        ],
+        [
+            'role.required' => 'Please Enter a Role',
+            'role.unique' => 'Already entered',
+            'description' => 'Maximum size 255',
+        ]);
+
+        if($validate == true){
+            $role = Role::find($id);
+            $role->update([
+                'role' => $request->role,
+                'description' => $request->description,
+            ]);
+            
+            return back()->with('success','Role Update successfull');
+        }
+
+        if($validate == false){
+            return back()->with('error','Some error found !!!');
+        }
     }
 
     /**

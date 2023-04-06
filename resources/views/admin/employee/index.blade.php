@@ -29,10 +29,10 @@
                                     <td>{{ $employee_detail->user->role }}</td>
                                     <td>{{ $employee_detail->bloop_group }}</td>
                                     <td>
-                                        <a href="{{ route('admin.shift.create',$employee_detail->id) }}" class="btn btn-secondary">Add Shift</a>
-                                        <a href="{{ route('admin.employee-manage.edit',$employee_detail->id) }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{ route('admin.shift.create',$employee_detail->id) }}" class="btn btn-secondary"><i class="las la-plus-circle"></i></a>
+                                        <a href="{{ route('admin.employee-manage.edit',$employee_detail->id) }}" class="btn btn-primary"><i class="las la-user-edit"></i></a>
                                         <a href="#" class="btn btn-danger">Delete</a>
-                                        <a href="{{ route('admin.employee-manage.show',$employee_detail->id) }}" class="btn btn-success">View</a>
+                                        <a href="{{ route('admin.employee-manage.show',$employee_detail->id) }}" class="btn btn-success"><i class="las la-eye"></i></a>
                                         
                                     </td>
                                 </tr>
