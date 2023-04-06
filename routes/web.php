@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ShiftController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\EmployeeManageController;
 use App\Http\Controllers\Admin\AttandanceBySuperAdminController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Employee\EmployeeAttandanceController;
 use App\Http\Controllers\Employee\UserDashboardController;
 
@@ -67,6 +68,14 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
                     Route::post('store', 'store')->name('store');
                     Route::post('date-filter', 'dateFilter')->name('dateFilter');
                     Route::get('attandance', 'attandance')->name('attandance');
+               });
+          });
+
+          Route::controller(RoleController::class)->group(function () {
+               Route::prefix('role')->name('role.')->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('create', 'create')->name('create');
+                    Route::post('store', 'store')->name('store');
                });
           });
      });

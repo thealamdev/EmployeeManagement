@@ -361,6 +361,30 @@
                                          
                                     </ul>
                                 </li>
+
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button" data-toggle="collapse" href="#rolemanagement">
+                                        <i
+                                            class="sidebar-menu-icon sidebar-menu-icon--left material-icons">slideshow</i>
+                                        <span class="sidebar-menu-text">Role Management</span>
+                                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                    </a>
+                                    <ul class="sidebar-submenu collapse" id="rolemanagement">
+                                        <li class="sidebar-menu-item">
+                                            <a class="sidebar-menu-button"
+                                                href="{{ route('admin.role.create') }}">
+                                                <span class="sidebar-menu-text">Role Create</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="sidebar-menu-item">
+                                            <a class="sidebar-menu-button"
+                                                href="{{ route('admin.role.index') }}">
+                                                <span class="sidebar-menu-text">Role List</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
                                
                                 <li class="sidebar-menu-item">
                                     <a class="sidebar-menu-button" data-toggle="collapse" href="#employeeAttandance">

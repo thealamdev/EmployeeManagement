@@ -33,6 +33,8 @@ class LoginController extends Controller
             return redirect()->route('dashboard.home');
         } elseif ($user->role == 'user') {
             return redirect()->route('employee.dashboard.index');
+        }else{
+            redirect(route('login'));
         }
     }
 
