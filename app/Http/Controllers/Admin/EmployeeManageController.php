@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\EmployeeContact;
 use App\Models\EmployeeEmerContact;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\isEmpty;
 
@@ -22,7 +23,7 @@ class EmployeeManageController extends Controller
      */
     public function index()
     {
-        $employee_details = employee::with('user')->get();
+        $employee_details = employee::with('user','department')->get();
         // return $employee_details;
         return view('admin.employee.index', compact('employee_details'));
     }
@@ -33,8 +34,8 @@ class EmployeeManageController extends Controller
     public function create()
     {
         $departments = Department::get(['id', 'dep_name', 'description']);
-        // return $departments;
-        return view('admin.employee.create', compact('departments'));
+        $roles = Role::get();
+        return view('admin.employee.create', compact('departments','roles'));
     }
 
     /**
@@ -115,9 +116,9 @@ class EmployeeManageController extends Controller
     public function edit(string $id)
     {
         $employee_details = employee::with('user')->with('employee_contact')->with('employee_emr_contact')->where('id', $id)->get()->firstOrFail();
-
+        $roles = Role::get();
         $departments = Department::get(['id', 'dep_name', 'description']);
-        return view('admin.employee.edit', compact('employee_details', 'departments'));
+        return view('admin.employee.edit', compact('employee_details', 'departments','roles'));
     }
 
     /**

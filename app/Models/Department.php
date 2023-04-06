@@ -13,4 +13,8 @@ class Department extends Model
     protected $guarded =[
         'id'
     ];
+
+    public function employee(){
+        return $this->hasOne(employee::class);
+    }
 }

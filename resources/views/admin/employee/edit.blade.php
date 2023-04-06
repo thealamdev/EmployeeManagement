@@ -113,9 +113,17 @@
                         
                         <div class="form-group">
                             <label class="control-label">Employee Role</label>
-                            <input maxlength="100" type="text" value="{{ $employee_details->user->role }}" name="role" required="required" class="form-control"
-                                placeholder="Enter Employee Role" />
+                            <select name="role" id="role" class="form-control">
+                                <option selected disabled>Select user Role</option>
+                                @foreach ($roles as $role)
+                                <option @if ($employee_details->user->role == $role->role)
+                                    {{ 'selected' }}
+                                @endif value="{{ $role->role }}">{{ $role->role }}</option>
+                                @endforeach
+                            </select>
+                            
                         </div>
+                        
                         <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
                     </div>
                 </div>

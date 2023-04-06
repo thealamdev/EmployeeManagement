@@ -28,8 +28,13 @@
                                         <td>
                                             <a href="{{ route('admin.role.edit', $role->id) }}" class="btn btn-primary"><i
                                                     class="lar la-edit"></i></a>
-                                            <a href="{{ route('admin.role.delete', $role->id) }}" class="btn btn-danger"><i
-                                                    class="lar la-trash-alt"></i></a>
+                                            <form action="{{ route('admin.role.delete',$role->id) }}" style="display: inline-block" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="button"  class="btn btn-danger sub_btn"><i
+                                                    class="lar la-trash-alt"></i></button>
+                                            </form>
+                                             
                                         </td>
                                     </tr>
                                 @endforeach
@@ -40,4 +45,19 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        $sub_btn = $('.sub_btn');
+        $sub_btn.on('click',function(){
+            if( confirm("Would you like to delete it ???")){
+                this.form.submit();
+                // $sub_btn.closest('form').submit()
+            }else{
+                alert("not ok")
+            }
+            
+        })
+    </script>
 @endsection
