@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -28,7 +29,28 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation part:
+        $validate = $request->validate([
+            'role' => 'required|unique:roles',
+            'description' => 'nullable|max:255',
+        ],
+        [
+            'role.required' => 'Please Enter a Role',
+            'role.unique' => 'Already entered',
+            'description' => 'Maximum size 255',
+        ]);
+
+        if($validate == true){
+            $role = Role::create([
+                'role' => $request->role,
+                'description' => $request->description,
+            ]);
+            
+            return back()->with('success','Role Insert successfull');
+        }
+        else{
+            return back()->with('error','Some error found !!!');
+        }
     }
 
     /**

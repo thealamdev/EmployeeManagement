@@ -15,9 +15,11 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="shift_name" class="form-label">Role Name</label>
-                                <input type="text" name="role" class="form-control"
-                                    aria-describedby="emailHelp">
-                                <div id="error" class="form-text"></div>
+                                <input type="text" name="role" class="form-control" aria-describedby="emailHelp">
+                                @error('role')
+                                    <div id="error" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
+
                             </div>
                             <div class="mb-3">
                                 <label for="description" class="form-label">Description</label>
