@@ -39,7 +39,7 @@
      
      <div class="row">
         <div class="col-lg-12">
-            <a href="{{ route('admin.employee-manage.createPDF',$employee_detail->id) }}">Print</a>
+            <a class="btn btn-primary" href="{{ route('admin.employee-manage.createPDF',$employee_detail->id) }}">Print</a>
         </div>
      </div>
             <div class="row">
@@ -111,3 +111,4 @@
             </div>
    
 @endsection
+ 

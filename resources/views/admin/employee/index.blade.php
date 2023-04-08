@@ -24,18 +24,18 @@
                                 @foreach ($employee_details as $employee_detail)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('admin.employee-manage.idcard',$employee_detail->id) }}"> <img src="{{ asset('/storage/employee/'.$employee_detail->photo) }}" width="50" style="border-radius: 50%" height="50" alt=""></a>
+                                        <a title="{{ $employee_detail->user->fname ." ". $employee_detail->user->lname ."'s ID" }}" href="{{ route('admin.employee-manage.idcard',$employee_detail->id) }}"> <img src="{{ asset('/storage/employee/'.$employee_detail->photo) }}" width="50" style="border-radius: 50%" height="50" alt=""></a>
                                     </td>
                                     <td>{{ $employee_detail->user->fname ." ". $employee_detail->user->lname }}</td>
                                     <td>{{ $employee_detail->department->dep_name }}</td>
                                     <td>{{ $employee_detail->user->role }}</td>
                                     <td>{{ $employee_detail->bloop_group }}</td>
                                     <td>
-                                        <a href="{{ route('admin.shift.create',$employee_detail->id) }}" class="btn btn-secondary"><i class="las la-plus-circle"></i></a>
-                                        <a href="{{ route('admin.employee-manage.edit',$employee_detail->id) }}" class="btn btn-primary"><i class="las la-user-edit"></i></a>
+                                        <a title="{{ "Add Shift" }}" href="{{ route('admin.shift.create',$employee_detail->id) }}" class="btn btn-secondary"><i class="las la-plus-circle"></i></a>
+                                        <a title="{{ "Edit" }}" href="{{ route('admin.employee-manage.edit',$employee_detail->id) }}" class="btn btn-primary"><i class="las la-user-edit"></i></a>
                                         <a href="#" class="btn btn-danger"><i
                                             class="lar la-trash-alt"></i></a>
-                                        <a href="{{ route('admin.employee-manage.show',$employee_detail->id) }}" class="btn btn-success"><i class="las la-eye"></i></a>
+                                        <a title="{{ "View Details" }}" href="{{ route('admin.employee-manage.show',$employee_detail->id) }}" class="btn btn-success"><i class="las la-eye"></i></a>
                                         
                                     </td>
                                 </tr>
