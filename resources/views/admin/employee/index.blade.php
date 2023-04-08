@@ -24,7 +24,7 @@
                                 @foreach ($employee_details as $employee_detail)
                                 <tr>
                                     <td>
-                                        <img src="{{ asset('/storage/employee/'.$employee_detail->photo) }}" width="50" style="border-radius: 50%" alt="">
+                                        <a href="{{ route('admin.employee-manage.idcard',$employee_detail->id) }}"> <img src="{{ asset('/storage/employee/'.$employee_detail->photo) }}" width="50" style="border-radius: 50%" height="50" alt=""></a>
                                     </td>
                                     <td>{{ $employee_detail->user->fname ." ". $employee_detail->user->lname }}</td>
                                     <td>{{ $employee_detail->department->dep_name }}</td>

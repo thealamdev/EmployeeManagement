@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Shift;
 use App\Models\employee;
+use Barryvdh\DomPDF\PDF;
 use App\Models\Department;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use App\Models\EmployeeContact;
+use Illuminate\Support\Facades\DB;
 use App\Models\EmployeeEmerContact;
-use App\Models\Role;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\isEmpty;
 
@@ -201,4 +202,22 @@ class EmployeeManageController extends Controller
     {
         //
     }
+
+    // Employee ID Card Generator:
+    public function idCard(string $id){
+        $employee_detail = employee::where('id',$id)->with('user','employee_contact')->firstOrFail();
+        // return $employee_detail;
+        return view('admin.employee.id_card',compact('employee_detail'));
+    }
+
+    public function createPDF(string $id) {
+        $data = employee::where('id',$id)->with('user','employee_contact')->firstOrFail();
+        $employee_detail = $data->toArray();
+        // return $employee_details['id'];
+        // view()->share('employee_detail',$employee_detail);
+        $pdf = app('dompdf.wrapper')->loadView('admin.employee.id-card-pdf', compact('employee_detail'));
+        // download PDF file with download method
+        return $pdf->download('pdf_file.pdf');
+    }
+    
 }

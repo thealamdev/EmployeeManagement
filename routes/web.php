@@ -50,6 +50,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
                     Route::get('edit/{emp_id}', 'edit')->name('edit');
                     Route::get('show/{id}', 'show')->name('show');
                     Route::put('update/{emp_id}', 'update')->name('update');
+                    Route::get('idcard/{id}','idCard')->name('idcard');
+                    Route::get('createPDF/{id}','createPDF')->name('createPDF');
+                    
                });
           });
 

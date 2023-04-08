@@ -70,12 +70,11 @@ class RoleController extends Controller
     {
          //validation part:
          $validate = $request->validate([
-            'role' => 'required|unique:roles',
+            'role' => 'required',
             'description' => 'nullable|max:255',
         ],
         [
             'role.required' => 'Please Enter a Role',
-            'role.unique' => 'Already entered',
             'description' => 'Maximum size 255',
         ]);
 

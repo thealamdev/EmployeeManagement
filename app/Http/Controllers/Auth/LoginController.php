@@ -30,7 +30,7 @@ class LoginController extends Controller
     public function authenticated($request, $user)
     {
         if ($user->role == 'super-admin') {
-            return redirect()->route('dashboard.home');
+            return redirect()->route('admin.home');
         } elseif ($user->role == 'user') {
             return redirect()->route('employee.dashboard.index');
         }else{
