@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>{{ $pdf_name . ".pdf" }}</title>
 
     <style>
         body{
@@ -16,7 +16,6 @@
         }
         .card_wrapper {
             background: #D8D8D8;
-
             padding: 20px;
         }
 
@@ -51,10 +50,6 @@
 </head>
 
 <body>
-
-
-
- 
             <div class="card_wrapper" style="width:500px;display:flex;justify-content:space-between">
                 <div class="card_left" style="width:40%;">
                     <img src="{{ public_path('/storage/employee/' .$employee_detail['photo']) }}" width="50%" style="border-radius: 100%" alt="">
@@ -121,9 +116,6 @@
                     </div>
                 </div>
             </div>
- 
-
-
 </body>
 
 </html>

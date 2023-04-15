@@ -215,7 +215,7 @@ class EmployeeManageController extends Controller
         // return $employee_detail;
  
         $pdf_name = $employee_detail['user']['fname'].uniqid();
-        $pdf = Pdf::loadView('admin.employee.id-card-pdf', compact('employee_detail'));
+        $pdf = Pdf::loadView('admin.employee.id-card-pdf', compact('employee_detail','pdf_name'));
         return $pdf->download($pdf_name.'.pdf');
     }
     
