@@ -109,7 +109,6 @@ class EmployeeManageController extends Controller
      * @return View|Factory|Application
      * Display the specified resource.
      */
-
     public function show(employee $employee): View | Factory | Application
     {
         return view('admin.employee.show', compact('employee'));
@@ -204,23 +203,29 @@ class EmployeeManageController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // TODO implement the method.
     }
 
-    // Employee ID Card Generator:
-    public function idCard(string $id)
+    /**
+     * @param String $id
+     * @return array|object
+     * method for generate employee ID card
+     */
+    public function idCard(string $id): array | object
     {
         $employee_detail = employee::where('id', $id)->with('user', 'employee_contact')->firstOrFail();
-        // return $employee_detail;
         return view('admin.employee.id_card', compact('employee_detail'));
     }
 
+    /**
+     * @param String $id
+     * @return array|object
+     * method for create PDF of employee ID card
+     */
     public function createPDF(string $id)
     {
         $data = employee::select('id', 'photo', 'job_title', 'gender', 'dob', 'user_id', 'bloop_group')->where('id', $id)->with('user', 'employee_contact')->firstOrFail();
         $employee_detail = $data->toArray();
-        // return $employee_detail;
-
         $pdf_name = $employee_detail['user']['fname'] . uniqid();
         $pdf = Pdf::loadView('admin.employee.id-card-pdf', compact('employee_detail', 'pdf_name'));
         return $pdf->download($pdf_name . '.pdf');
