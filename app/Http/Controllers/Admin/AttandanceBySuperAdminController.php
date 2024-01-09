@@ -20,10 +20,10 @@ class AttandanceBySuperAdminController extends Controller
 
         // return Route::currentRouteName();
         if ($request->ajax()) {
-            $employee_attandance = employee::where('job_title', 'LIKE', '%' . $request->emp_id . '%')
-            ->with(['user','employee_attandance'])
-                ->orWhere('id', '=', $request->emp_id)
-                ->get();
+            $employee_attandance = employee::where('job_title', 'LIKE', '%' . $request->keyword . '%')->get();
+            // ->with(['user','employee_attandance'])
+            //     ->orWhere('id', '=', $request->keyword)
+            //     ->get();
             return response()->json(['employee_attandance' => $employee_attandance]);
 
         } elseif (Route::currentRouteName() == 'admin.attandance-control.index') {

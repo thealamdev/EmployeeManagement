@@ -1,30 +1,31 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use Barryvdh\DomPDF\Facade\Pdf;
+
+use App\Http\Controllers\Controller;
+use App\Models\Department;
+use App\Models\employee;
+use App\Models\EmployeeContact;
+use App\Models\EmployeeEmerContact;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Shift;
-use App\Models\employee;
-use App\Models\Department;
-use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Factory;
+use Illuminate\Console\Application;
 use Illuminate\Http\Request;
-use App\Models\EmployeeContact;
-use Illuminate\Support\Facades\DB;
-use App\Models\EmployeeEmerContact;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use function PHPUnit\Framework\isEmpty;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class EmployeeManageController extends Controller
 {
     /**
+     * @return array|object
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): array | object
     {
-        $employee_details = employee::with('user','department')->get();
-        // return $employee_details;
+        $employee_details = employee::with('user', 'department')->get();
         return view('admin.employee.index', compact('employee_details'));
     }
 
@@ -35,13 +36,15 @@ class EmployeeManageController extends Controller
     {
         $departments = Department::get(['id', 'dep_name', 'description']);
         $roles = Role::get();
-        return view('admin.employee.create', compact('departments','roles'));
+        return view('admin.employee.create', compact('departments', 'roles'));
     }
 
     /**
+     * @param Request $request
+     * @return array|object
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): array | object
     {
 
         $fname = $request->fname;
@@ -54,10 +57,10 @@ class EmployeeManageController extends Controller
             'lname' => $request->lname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role
+            'role' => $request->role,
         ]);
 
-        $id =  $user->id;
+        $id = $user->id;
 
         $upload_image = $user_image->move(public_path('/storage/employee/'), $image_name);
 
@@ -73,7 +76,7 @@ class EmployeeManageController extends Controller
             'hire_date' => $request->hire_date,
             'leave_date' => $request->leave_date,
             'dob' => $request->dob,
-            'note' => $request->notes
+            'note' => $request->notes,
         ]);
 
         $employee_id = $employee->id;
@@ -86,7 +89,6 @@ class EmployeeManageController extends Controller
             'city' => $request->city,
             'zip' => $request->zip,
         ]);
-
 
         $employee_emr_contact = EmployeeEmerContact::create([
             'employee_id' => $employee_id,
@@ -103,11 +105,14 @@ class EmployeeManageController extends Controller
     }
 
     /**
+     * @param $id
+     * @return View|Factory|Application
      * Display the specified resource.
      */
-    public function show(string $id)
+
+    public function show(employee $employee): View | Factory | Application
     {
-        return view('admin.employee.show');
+        return view('admin.employee.show', compact('employee'));
     }
 
     /**
@@ -118,7 +123,7 @@ class EmployeeManageController extends Controller
         $employee_details = employee::with('user')->with('employee_contact')->with('employee_emr_contact')->where('id', $id)->get()->firstOrFail();
         $roles = Role::get();
         $departments = Department::get(['id', 'dep_name', 'description']);
-        return view('admin.employee.edit', compact('employee_details', 'departments','roles'));
+        return view('admin.employee.edit', compact('employee_details', 'departments', 'roles'));
     }
 
     /**
@@ -126,10 +131,11 @@ class EmployeeManageController extends Controller
      */
     public function update(Request $request, string $emp_id)
     {
+
         $employee_all = employee::where('id', $emp_id)->with('user')->with('employee_contact')->with('employee_emr_contact')->first();
 
         $fname = $request->fname;
-        $employee_img =  employee::where('id', $emp_id)->get('photo')->first();
+        $employee_img = employee::where('id', $emp_id)->get('photo')->first();
         $image_name = $employee_img->photo;
         $user_image = $request->file('photo');
         if (!empty($user_image)) {
@@ -143,7 +149,7 @@ class EmployeeManageController extends Controller
         $user->update([
             'fname' => $request->fname,
             'lname' => $request->lname,
-            'role' => $request->role
+            'role' => $request->role,
         ]);
 
         $employe_m_id = $employee_all->id;
@@ -160,9 +166,8 @@ class EmployeeManageController extends Controller
             'hire_date' => $request->hire_date,
             'leave_date' => $request->leave_date,
             'dob' => $request->dob,
-            'note' => $request->notes
+            'note' => $request->notes,
         ]);
-
 
         $employee_contact_id = $employee_all->employee_contact->id;
         $employee_contact = EmployeeContact::find($employee_contact_id);
@@ -203,20 +208,22 @@ class EmployeeManageController extends Controller
     }
 
     // Employee ID Card Generator:
-    public function idCard(string $id){
-        $employee_detail = employee::where('id',$id)->with('user','employee_contact')->firstOrFail();
+    public function idCard(string $id)
+    {
+        $employee_detail = employee::where('id', $id)->with('user', 'employee_contact')->firstOrFail();
         // return $employee_detail;
-        return view('admin.employee.id_card',compact('employee_detail'));
+        return view('admin.employee.id_card', compact('employee_detail'));
     }
 
-    public function createPDF(string $id) {
-        $data = employee::select('id','photo','job_title','gender','dob','user_id','bloop_group')->where('id',$id)->with('user','employee_contact')->firstOrFail();
+    public function createPDF(string $id)
+    {
+        $data = employee::select('id', 'photo', 'job_title', 'gender', 'dob', 'user_id', 'bloop_group')->where('id', $id)->with('user', 'employee_contact')->firstOrFail();
         $employee_detail = $data->toArray();
         // return $employee_detail;
- 
-        $pdf_name = $employee_detail['user']['fname'].uniqid();
-        $pdf = Pdf::loadView('admin.employee.id-card-pdf', compact('employee_detail','pdf_name'));
-        return $pdf->download($pdf_name.'.pdf');
+
+        $pdf_name = $employee_detail['user']['fname'] . uniqid();
+        $pdf = Pdf::loadView('admin.employee.id-card-pdf', compact('employee_detail', 'pdf_name'));
+        return $pdf->download($pdf_name . '.pdf');
     }
-    
+
 }

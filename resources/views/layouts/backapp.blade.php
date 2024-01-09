@@ -24,7 +24,7 @@
 <body class="layout-default">
     
     <div class="preloader"></div>
-    <!-- Header Layout -->
+    
     <div class="mdk-header-layout js-mdk-header-layout">
         <!-- Header -->
         <div id="header" class="mdk-header js-mdk-header m-0" data-fixed>

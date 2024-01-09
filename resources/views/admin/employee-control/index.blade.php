@@ -5,7 +5,12 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-lg-2">
-                    Search: <input type="text" id="emp_id" class="form-control">
+                      
+                        Search: <input type="text" id="search" class="form-control">
+                   
+                        
+                   
+                    
                 </div>
 
                 <div class="col-lg-10">
@@ -44,49 +49,44 @@
                 </thead>
 
                 <tbody class="emp_add">
-                    @foreach ($employee_attandance as $emp_att)
+                    {{-- @foreach ($employee_attandance as $emp_att)
                         <tr>
                             <td>{{ $emp_att->created_at->format('d-m-Y') }}</td>
                             <td>{{ $emp_att->employee->user->fname . ' ' . $emp_att->employee->user->lname }}</td>
                             <td>{{ $emp_att->present }}</td>
                             <td>{{ $emp_att->created_at->format('h:i A') }}</td>
                         </tr>
-                    @endforeach
+                    @endforeach --}}
 
                 </tbody>
             </table>
         </div>
     </div>
 @endsection
-
+{{-- <td>' + emp_detils[i]['user']['fname'] +" "+ emp_detils[i]['user']['lname'] + '</td>\ --}}
 
 @section('js')
     <script>
         $(document).ready(function() {
-
-            var emp_input = document.querySelector('#emp_id')
-
-            emp_input.addEventListener('keyup', function() {
-                $emp_id = $(this).val();
-
+            $('#search').on('keyup', function() {
+                $keyword = $('#search').val()
+                console.log($keyword)
                 $.ajax({
                     type: 'GET',
                     url: "{{ route('admin.attandance-control.index') }}",
                     dataType: 'json',
                     data: {
-                        emp_id: $emp_id,
+                        keyword: $keyword,
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(data) {
-
-                        console.log(data)
-                        emp_detils = data.employee_attandance
+                        const emp_detils = data.employee_attandance
+                        console.log(emp_detils)
                         let html = '';
                         if (emp_detils.length > 0) {
                             for (let i = 0; i < emp_detils.length; i++) {
                                 html += '<tr>\
                                                 <td>' + emp_detils[i]['job_title']+'</td>\
-                                                <td>' + emp_detils[i]['user']['fname'] +" "+ emp_detils[i]['user']['lname'] + '</td>\
                                                 <td>' + emp_detils[i]['nid'] + '</td>\
                                                 <td>' + emp_detils[i]['bloop_group'] + '</td>\
                                         </tr>';
